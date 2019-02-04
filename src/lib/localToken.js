@@ -1,12 +1,9 @@
 import { LOCAL_TOKEN_ID } from '../config';
 
-// Lib Helper for Header Token
-import setAuthorizationToken from './setAuthorizationToken';
-
-export const setLocalToken = (token) => {
+export const setLocalToken = (access, refresh) => {
   try {
-    localStorage.setItem(LOCAL_TOKEN_ID, token);
-    setAuthorizationToken(token);
+    localStorage.setItem(LOCAL_TOKEN_ID, access);
+    localStorage.setItem(`${LOCAL_TOKEN_ID}_refresh`, refresh);
     return true;
   } catch (e) {
     return false;
@@ -16,7 +13,7 @@ export const setLocalToken = (token) => {
 export const unsetLocalToken = () => {
   try {
     localStorage.removeItem(LOCAL_TOKEN_ID);
-    setAuthorizationToken(false);
+    localStorage.removeItem(`${LOCAL_TOKEN_ID}_refresh`);
     return true;
   } catch (e) {
     return false;

@@ -3,19 +3,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-// Load History
-import history from './lib/history';
-
 // Load Store
 import store from './store';
 
-import App from './App';
+// Load Routes
+import Routes from './routes_save';
 
 ReactDOM.render(
-  (
-    <Provider store={store} history={history}>
-      <App />
-    </Provider>
-  ),
+  <Provider store={store}>
+    <Routes />
+  </Provider>,
   document.getElementById('root')
 );

@@ -1,6 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import jwtDecode from 'jwt-decode';
 
+// History
+import history from '../../history';
+
 // Import Constants
 import { auth as t } from '../../constants';
 
@@ -16,21 +19,20 @@ import api from '../../api';
 // Lib Helpers
 import { setLocalToken, unsetLocalToken, getLocalToken } from '../../lib/localToken';
 import setAuthorizationToken from '../../lib/setAuthorizationToken';
-import history from '../../lib/history';
 
 function* login(action) {
   try {
     // Get the token
     const result = yield call(api.auth.login, action.payload);
-    const { token } = result.data;
+    const { access, refresh } = result.data;
     // Set Local Token
-    yield setLocalToken(token);
-    // Set Header Authorization Token
-    yield setAuthorizationToken(token);
+    yield setLocalToken(access, refresh);
+    // Set Header Authorization
+    yield setAuthorizationToken(access);
     // Success Login
-    yield put(loginSuccess(jwtDecode(token)));
+    yield put(loginSuccess(jwtDecode(access)));
     // Redirect To Dashboard
-    history.push('/dashboard');
+    history.push('/');
   } catch (error) {
     yield put(loginFailure('Something went wrong, Please try again.'));
   }
@@ -40,12 +42,11 @@ function* logout() {
   try {
     // Unset Local Token
     yield unsetLocalToken();
-    // Unset Header Authorization Token
+    // UnSet Header Authorization
     yield setAuthorizationToken(null);
     // Logout
     yield put(logoutSuccess());
     // Redirect To Home
-    history.push('/');
   } catch (error) {
     yield put(logoutFailure('Something went wrong, Please try again.'));
   }

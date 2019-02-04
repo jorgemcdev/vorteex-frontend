@@ -27,7 +27,7 @@ export const logoutFailure = error => ({
   payload: error
 });
 
-// Token
+// Verify Token
 export const tokenRequest = () => ({
   type: t.TOKEN_REQUEST
 });

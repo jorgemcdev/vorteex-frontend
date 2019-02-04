@@ -23,7 +23,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isAuthenticated: true,
-        user: action.payload,
+        user: action.payload.user_id,
         errors: ''
       };
     case t.LOGIN_FAILURE:
