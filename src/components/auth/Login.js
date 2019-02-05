@@ -37,10 +37,8 @@ class Login extends Component {
 
     return (
       <Container>
-        <br />
-        <br />
-        <Row className="justify-content-center">
-          <Col md="8">
+        <Row className="justify-content-center m-4">
+          <Col md="6">
             {errors
               && <Alert type="danger" title="Login" text={errors} onDismiss={reset} />}
           </Col>
