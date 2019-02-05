@@ -9,7 +9,8 @@ import { auth as t } from '../../constants';
 
 // Import Action Creators
 import {
-  loginSuccess, loginFailure, tokenSuccess, tokenFailure,
+  loginSuccess, loginFailure,
+  tokenSuccess, tokenFailure,
   logoutSuccess, logoutFailure
 } from '../../actions';
 
@@ -47,6 +48,7 @@ function* logout() {
     // Logout
     yield put(logoutSuccess());
     // Redirect To Home
+    history.push('/');
   } catch (error) {
     yield put(logoutFailure('Something went wrong, Please try again.'));
   }
@@ -59,7 +61,7 @@ function* tokenVerify() {
     // Set Header Authorization Token
     yield setAuthorizationToken(token);
     // Verify Token
-    yield call(api.auth.tokenVerify, token);
+    yield call(api.auth.verify, token);
     // Sucess
     yield put(tokenSuccess());
   } catch (error) {
@@ -68,7 +70,9 @@ function* tokenVerify() {
     // Unset Header Authorization Token
     yield setAuthorizationToken(null);
     // Logout
-    yield put(tokenFailure('Something went wrong, Please try again.'));
+    yield put(tokenFailure('Your Session Expired, Please try again.'));
+    // Redirect To Home
+    history.push('/');
   }
 }
 
