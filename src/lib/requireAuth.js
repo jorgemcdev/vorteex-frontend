@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// Actions
 import { tokenRequest } from '../actions';
 
 export default (ComposedComponent) => {
   class Authenticate extends Component {
     componentWillMount() {
-      // eslint-disable-next-line react/destructuring-assignment
-      this.props.tokenRequest();
+      const { verifyToken } = this.props;
+      verifyToken();
     }
 
     render() {
@@ -21,16 +22,16 @@ export default (ComposedComponent) => {
 
   Authenticate.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    tokenRequest: PropTypes.func.isRequired,
+    verifyToken: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
   });
 
-  const mapDispatchToProps = {
-    tokenRequest
-  };
+  const mapDispatchToProps = dispatch => ({
+    verifyToken: () => dispatch(tokenRequest())
+  });
 
   return connect(
     mapStateToProps,
