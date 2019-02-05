@@ -44,8 +44,10 @@
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.6.0",
     "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
     "s3": "^2.0.0",
     "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
@@ -64,6 +66,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.0",
-    "shortid": "^2.2.14"
+    "shortid": "^2.2.14",
+    "vis-react": "^0.4.3"
   }
 }
