@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NavBar from '../components/shared/navbar/NavBar';
+import NavBar from '../shared/navbar/NavBar';
 
-const Default = ({ children }) => (
-  <div>
+const Page = ({ children }) => (
+  <React.Fragment>
     <NavBar />
     <div className="container">
       {children}
     </div>
-  </div>
-
+  </React.Fragment>
 );
 
-Default.propTypes = {
+Page.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default Default;
+export default Page;
