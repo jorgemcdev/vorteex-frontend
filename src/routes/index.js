@@ -28,12 +28,8 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-ActiveRoutes.defaultProps = {
-  isAuthenticated: false
-};
-
 ActiveRoutes.propTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default connect(

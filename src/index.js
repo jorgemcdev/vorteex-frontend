@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // Load Routes
-import Routes from './routes_save';
+import Routes from './routes';
 
 ReactDOM.render(
   <Provider store={store}>
