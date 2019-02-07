@@ -4,7 +4,7 @@
   "description": "Vorteex - Manager Frontend",
   "main": "index.js",
   "scripts": {
-    "dev":   "webpack-dev-server --hot --config .webpack/dev.config.js",
+    "dev": "webpack-dev-server --hot --config .webpack/dev.config.js",
     "build": "webpack                  --config .webpack/prod.config.js",
     "start": "webpack-dev-server       --config .webpack/base.config.js",
     "deploy": "npm run build && node s3-deploy",
@@ -62,6 +62,7 @@
     "classnames": "^2.2.6",
     "flag-icon-css": "^3.2.1",
     "font-awesome": "^4.7.0",
+    "formik": "^1.4.3",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "react": "^16.7.0",
@@ -75,6 +76,7 @@
     "redux-saga": "^1.0.0",
     "shortid": "^2.2.14",
     "simple-line-icons": "^2.4.1",
-    "vis-react": "^0.4.3"
+    "vis-react": "^0.4.3",
+    "yup": "^0.26.10"
   }
 }
