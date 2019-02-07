@@ -4,9 +4,9 @@
   "description": "Vorteex - Manager Frontend",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --hot --open --config webpack.config.dev",
-    "build": "webpack --mode production --config webpack.config.prod",
-    "start": "webpack-dev-server --config webpack.config ./build/index.html",
+    "dev":   "webpack-dev-server   --config .webpack/dev.config.js",
+    "build": "webpack              --config .webpack/prod.config.js",
+    "start": "webpack-dev-server   --config .webpack/base.config.js",
     "deploy": "npm run build && node s3-deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

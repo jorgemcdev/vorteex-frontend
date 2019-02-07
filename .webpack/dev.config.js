@@ -3,15 +3,20 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: './src/index.js'
   },
   output: {
-    path: path.join(__dirname, './build'),
+    path: path.join(__dirname, '../build'),
     filename: 'js/[name].[hash].js',
   },
   devServer: {
     hot: true,
+    contentBase: path.join(__dirname, '../build'),
+    compress: false,
+    host: '0.0.0.0',
+    port: 3001,
     stats: 'errors-only',
     historyApiFallback: true,
     open: true
@@ -51,9 +56,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: 'public/index.html',
       title: 'Vorteex',
-      favicon: path.join(__dirname, './public/vorteex.ico'),
+      favicon: 'public/vorteex.ico',
       filename: './index.html'
     }),
     new MiniCssExtractPlugin({

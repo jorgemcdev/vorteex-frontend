@@ -5,11 +5,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: {
     app: './src/index.js'
   },
   output: {
-    path: path.join(__dirname, './build'),
+    path: path.join(__dirname, '../build'),
     filename: 'js/[name].[hash].js',
   },
   module: {
@@ -47,9 +48,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: 'public/index.html',
       title: 'Vorteex',
-      favicon: path.join(__dirname, './public/vorteex.ico'),
+      favicon: 'public/vorteex.ico',
       filename: './index.html'
     }),
     new MiniCssExtractPlugin({
@@ -58,9 +59,12 @@ module.exports = {
       options: { url: false }
     }),
     new CopyWebpackPlugin(
-      [{ from: './public/images', to: 'images' }],
+      [{ from: 'public/images', to: 'images' }],
       { copyUnmodified: false }
     ),
-    new CleanWebpackPlugin(['build'])
+    new CleanWebpackPlugin(
+      ['build'],
+      { root: path.join(__dirname, '../') }
+    )
   ]
 };
