@@ -26,12 +26,12 @@ function* login(action) {
     // Get the token
     const result = yield call(api.auth.login, action.payload);
     const { access, refresh } = result.data;
-    // Set Local Token
+    // Set Local Token and Header Authorization
     yield setLocalToken(access, refresh);
-    // Set Header Authorization
     yield setAuthorizationToken(access);
     // Success Login
-    yield put(loginSuccess(jwtDecode(access)));
+    const decodedToken = jwtDecode(access);
+    yield put(loginSuccess({ user_id: decodedToken.user_id, username: action.payload.username }));
     // Redirect To Dashboard
     history.push('/');
   } catch (error) {
