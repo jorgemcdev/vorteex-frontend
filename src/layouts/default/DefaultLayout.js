@@ -5,7 +5,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 import {
-  AppAside,
   AppBreadcrumb,
   AppFooter,
   AppHeader,
@@ -18,7 +17,7 @@ import {
 } from '@coreui/react';
 
 // Sidebar nav config
-import navigation from './_nav';
+import navigation from './navigation';
 
 // Routes config
 import routes from './routes';
@@ -27,16 +26,17 @@ import routes from './routes';
 import { logoutRequest } from '../../actions';
 
 // Components
-const DefaultAside = React.lazy(() => import('./DefaultAside'));
+// const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 const DefaultLayout = (props) => {
   const loading = <div className="animated fadeIn pt-1 text-center">Loading...</div>;
 
+  const { user, logout } = props;
+
   const handleLogout = (e) => {
     e.preventDefault();
-    const { logout } = props;
     logout();
   };
 
@@ -44,7 +44,7 @@ const DefaultLayout = (props) => {
     <div className="app">
       <AppHeader fixed>
         <Suspense fallback={loading}>
-          <DefaultHeader onLogout={handleLogout} />
+          <DefaultHeader user={user} onLogout={handleLogout} />
         </Suspense>
       </AppHeader>
       <div className="app-body">
@@ -78,11 +78,13 @@ const DefaultLayout = (props) => {
             </Suspense>
           </Container>
         </main>
+        {/*
         <AppAside fixed>
           <Suspense fallback={loading}>
             <DefaultAside />
           </Suspense>
         </AppAside>
+        */}
       </div>
       <AppFooter>
         <Suspense fallback={loading}>
@@ -94,6 +96,10 @@ const DefaultLayout = (props) => {
 };
 
 DefaultLayout.propTypes = {
+  user: PropTypes.shape({
+    user_id: PropTypes.number,
+    username: PropTypes.string
+  }).isRequired,
   logout: PropTypes.func.isRequired
 };
 

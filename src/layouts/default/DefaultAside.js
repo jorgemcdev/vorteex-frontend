@@ -22,7 +22,7 @@ class DefaultAside extends Component {
     // const { children, ...attributes } = this.props;
     const { activeTab } = this.state;
 
-    const avatars = '../../../public/images/avatars';
+    const avatars = './images/avatars';
 
     return (
       <React.Fragment>
