@@ -5,20 +5,30 @@ import './graphs.css';
 // eslint-disable-next-line react/prefer-stateless-function
 class Graphs extends Component {
   render() {
-    const nodes = [
-      { id: 0, label: '0', group: 0 },
-      { id: 1, label: '1', group: 0 },
-      { id: 2, label: '2', group: 0 },
-      { id: 3, label: '3', group: 1 },
-      { id: 4, label: '4', group: 1 },
-    ];
-    const edges = [
-      { from: 1, to: 0, shadow: { color: 'rgb(0,255,0)' }},
-      { from: 2, to: 0 },
-      { from: 4, to: 3 },
-      { from: 5, to: 4 },
-      { from: 4, to: 0 }
-    ];
+    const nodes = [{"id": 10001, "group": 0, "label": "CleanMX"},
+                   {"id": 20001, "group": 1, "label": "CleanMX Reports"},
+                   {"id": 10002, "group": 0, "label": "CleanMX"},
+                   {"id": 20002, "group": 1, "label": "CleanMX Events"},
+                   {"id": 10003, "group": 0, "label": "PhishTank"},
+                   {"id": 20003, "group": 1, "label": "PhishTank Reports"},
+                   {"id": 10004, "group": 0, "label": "PhishTank"},
+                   {"id": 20004, "group": 1, "label": "PhishTank Events"},
+                   {"id": 10005, "group": 0, "label": "Deduplicator"},
+                   {"id": 20005, "group": 1, "label": "Deduplicated Events"},
+                   {"id": 10006, "group": 0, "label": "MongoDB"},
+                   {"id": 10007, "group": 0, "label": "ElasticSearch"}];
+
+    const edges = [{"from": 20001, "to": 10001},
+                   {"from": 20001, "to": 10002},
+                   {"from": 20002, "to": 10002},
+                   {"from": 20003, "to": 10003},
+                   {"from": 20003, "to": 10004},
+                   {"from": 20004, "to": 10004},
+                   {"from": 20002, "to": 10005},
+                   {"from": 20004, "to": 10005},
+                   {"from": 20005, "to": 10005},
+                   {"from": 20005, "to": 10006},
+                   {"from": 20005, "to": 10007}];
 
     const graph = {
       nodes,
