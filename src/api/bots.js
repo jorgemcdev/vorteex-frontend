@@ -11,7 +11,7 @@ const bots = {
       timeout: API_TIMEOUT,
     })
   ),
-  getBots: () => (
+  getBots: id => (
     axios({
       method: 'get',
       url: id ? `${API_URL}/bots/${id}` : `${API_URL}/bots/`,
