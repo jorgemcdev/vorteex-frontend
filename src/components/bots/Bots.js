@@ -51,9 +51,9 @@ const Bots = () => {
               </FormGroup>
 
               <FormGroup row>
-                <Label for="config" sm={2}>Config</Label>
+                <Label for="group" sm={2}>Group</Label>
                 <Col sm={10}>
-                  <Input type="text" name="config" id="config" placeholder="" />
+                  <Input type="text" name="group" id="group" placeholder="" />
                 </Col>
               </FormGroup>
             </Form>
