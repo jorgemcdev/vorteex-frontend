@@ -13,13 +13,11 @@ import { loginRequest, authReset } from '../../../actions/index';
 import Alert from '../../shared/alert/Alert';
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
-  }
+  state = {
+    username: '',
+    password: ''
+  };
+  
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
