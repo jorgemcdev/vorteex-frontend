@@ -2,14 +2,14 @@
 import auth from './core/auth';
 
 // App
-import bots from './bots';
+import instances from './instances';
 import rooms from './rooms';
 
 const api = {
   // Core
   auth,
   // App
-  bots,
+  instances,
   rooms
 };
 
