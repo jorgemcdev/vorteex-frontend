@@ -48,6 +48,10 @@ const DefaultHeader = (props) => {
               <i className="fa fa-user" />
               Profile
             </DropdownItem>
+            <DropdownItem>
+              <i className="fa fa-key" />
+              Change Password
+            </DropdownItem>
             <DropdownItem divider />
             <DropdownItem
               onClick={e => onLogout(e)}
