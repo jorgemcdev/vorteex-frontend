@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Dashboard = () => <p className="p-2">Dashboard.....</p>;
+import Graphs from '../graphs/GraphsView';
+
+const Dashboard = () => (
+  <div className="mt-4">
+    <Graphs />
+  </div>
+);
 
 export default Dashboard;
