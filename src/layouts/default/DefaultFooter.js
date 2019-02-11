@@ -3,12 +3,10 @@ import React from 'react';
 const DefaultFooter = () => (
   <React.Fragment>
     <span>
-      <a href="https://coreui.io">CoreUI</a>
-      &copy; 2018 creativeLabs.
+      2019 Vorteex
     </span>
     <span className="ml-auto">
-      Powered by
-      <a href="https://coreui.io/react">CoreUI for React</a>
+      <small>Template by CoreUI</small>
     </span>
   </React.Fragment>
 );
