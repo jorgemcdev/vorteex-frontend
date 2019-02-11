@@ -8,7 +8,7 @@ export default {
     },
     {
       title: true,
-      name: 'Graph Designer',
+      name: '',
       wrapper: {
         element: '',
         attributes: {}
@@ -16,28 +16,28 @@ export default {
       class: ''// naming ex: { className: "my-class",style: { fontFamily: "Verdana" }, id: "my-id"}
     },
     {
-      name: 'Bots',
-      url: '/bots',
+      name: 'Instances',
+      url: '/instances',
       icon: 'icon-ban',
-    },
-    {
-      name: 'Rooms',
-      url: '/rooms',
-      icon: 'icon-puzzle',
-    },
-    {
-      name: 'Graphs',
-      url: '/graphs',
-      icon: 'icon-pie-chart',
     },
     {
       name: 'Templates',
       url: '/templates',
+      icon: 'icon-puzzle',
+    },
+    {
+      name: 'Templates Groups',
+      url: '/templates-groups',
+      icon: 'icon-puzzle',
+    },
+    {
+      name: 'Modules',
+      url: '/modules',
       icon: 'icon-drop',
     },
     {
-      name: 'Rooms Association',
-      url: '/rooms-association',
+      name: 'Rooms',
+      url: '/rooms',
       icon: 'icon-cursor',
     },
   ]
