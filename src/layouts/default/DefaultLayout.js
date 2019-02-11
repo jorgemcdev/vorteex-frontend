@@ -73,7 +73,7 @@ const DefaultLayout = (props) => {
                     />
                   ) : (null)
                 ))}
-                <Redirect from="/" to="/dashboard" />
+                <Redirect to="/404" />
               </Switch>
             </Suspense>
           </Container>
