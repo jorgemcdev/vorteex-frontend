@@ -20,7 +20,7 @@ class Graphs extends Component {
   async componentDidMount() {
     const { data } = await axios({
       method: 'get',
-      url: 'http://vorteex.ovnisec.com:9000/bots/',
+      url: 'http://vorteex.ovnisec.com:9000/instances/',
       headers: { 'Content-Type': 'application/json' },
       timeout: 5000
     });
@@ -69,10 +69,8 @@ class Graphs extends Component {
     };
 
     return (
-      <div>
-        <div id="mynetwork">
-          <Graph graph={graph} options={options} events={events} />
-        </div>
+      <div id="mynetwork">
+        <Graph graph={graph} options={options} events={events} />
       </div>
     );
   }
