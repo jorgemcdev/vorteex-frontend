@@ -10,7 +10,7 @@ import './App.scss';
 import history from './history';
 
 // Lib
-import requireAuth from './lib/requireAuth';
+import requireAuth from './utils/requireAuth';
 
 // Layouts
 import Public from './layouts/public/PublicLayout';
