@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, API_TIMEOUT } from '../config';
+import { API_URL, API_TIMEOUT } from '../../config';
 
 const bots = {
   postRoom: data => (

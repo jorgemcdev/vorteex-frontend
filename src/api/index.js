@@ -2,8 +2,8 @@
 import auth from './core/auth';
 
 // App
-import instances from './instances';
-import rooms from './rooms';
+import instances from './app/instances';
+import rooms from './app/rooms';
 
 const api = {
   // Core
