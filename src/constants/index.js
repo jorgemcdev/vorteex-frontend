@@ -4,8 +4,8 @@ import * as message from './core/message';
 import * as modal from './core/modal';
 
 // App
-import * as bots from './bots';
-import * as rooms from './rooms';
+import * as instances from './app/instances';
+import * as rooms from './app/rooms';
 
 export {
   // Core
@@ -13,6 +13,6 @@ export {
   message,
   modal,
   // App
-  bots,
+  instances,
   rooms
 };
