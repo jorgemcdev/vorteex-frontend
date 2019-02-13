@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Login = React.lazy(() => import('../../components/auth/login/LoginForm'));
-const Page404 = React.lazy(() => import('../../components/shared/Pages/Page404'));
-const Page500 = React.lazy(() => import('../../components/shared/Pages/Page500'));
+const Page404 = React.lazy(() => import('../../components/shared/pages/Page404'));
+const Page500 = React.lazy(() => import('../../components/shared/pages/Page500'));
 
 const routes = [
   {
