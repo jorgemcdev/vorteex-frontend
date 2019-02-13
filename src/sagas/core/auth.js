@@ -18,8 +18,8 @@ import {
 import api from '../../api';
 
 // Lib Helpers
-import { setLocalToken, unsetLocalToken, getLocalToken } from '../../lib/localToken';
-import setAuthorizationToken from '../../lib/setAuthorizationToken';
+import { setLocalToken, unsetLocalToken, getLocalToken } from '../../utils/localToken';
+import setAuthorizationToken from '../../utils/setAuthorizationToken';
 
 function* login(action) {
   try {
