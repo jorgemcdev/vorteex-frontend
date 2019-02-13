@@ -1,15 +1,19 @@
-/* eslint-disable react/no-array-index-key */
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 // routes config
 import routes from './routes';
 
+// Component
+import Loading from '../../components/shared/loading/Loading';
+
 const PublicLayout = () => {
-  const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
+  const loading = <Container className="justify-content-center"><Loading /></Container>;
+
   return (
     <div className="app flex-row align-items-center">
-      <Suspense fallback={loading()}>
+      <Suspense fallback={loading}>
         <Switch>
           {routes.map(route => (
             route.component ? (
@@ -22,7 +26,7 @@ const PublicLayout = () => {
                   <route.component {...props} />
                 )}
               />
-            ) : (null)
+            ) : null
           ))}
         </Switch>
       </Suspense>

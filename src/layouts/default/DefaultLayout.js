@@ -26,12 +26,16 @@ import routes from './routes';
 import { logoutRequest } from '../../actions';
 
 // Components
+import Loading from '../../components/shared/loading/Loading';
+import ModalRedux from '../../components/shared/modalRedux';
+
+// Lazy Load Components
 // const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 const DefaultLayout = (props) => {
-  const loading = <div className="animated fadeIn pt-1 text-center">Loading...</div>;
+  const loading = <div className="animated fadeIn pt-4 text-center"><Loading /></div>;
 
   const { user, logout } = props;
 
@@ -91,6 +95,8 @@ const DefaultLayout = (props) => {
           <DefaultFooter />
         </Suspense>
       </AppFooter>
+
+      <ModalRedux />
     </div>
   );
 };
