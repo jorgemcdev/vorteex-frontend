@@ -38,26 +38,10 @@ class Graphs extends Component {
     const graph = { nodes, edges };
 
     const options = {
+      autoResize: true,
       layout: {
         hierarchical: false
       },
-      nodes: {
-        shape: 'dot',
-        size: 30,
-        font: {
-          size: 32
-        },
-        borderWidth: 2,
-        shadow: true
-      },
-      edges: {
-        width: 2,
-        shadow: true
-      },
-      physics: {
-        enabled: false,
-        minVelocity: 0
-      }
     };
 
     const events = {
@@ -67,10 +51,11 @@ class Graphs extends Component {
       }
       */
     };
+    const show = <Graph graph={graph} options={options} events={events} />;
 
     return (
       <div id="mynetwork">
-        <Graph graph={graph} options={options} events={events} />
+        {show}
       </div>
     );
   }
