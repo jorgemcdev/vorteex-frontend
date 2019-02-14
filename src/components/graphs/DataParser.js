@@ -1,4 +1,4 @@
-class BotsDataParser {
+class DataParser {
   constructor() {
     this.nodes = [];
     this.edges = [];
@@ -7,9 +7,16 @@ class BotsDataParser {
     this.INSTANCE_ID_INDEX = 2000;
   }
 
-  addEdge(item1, item2) {
-    const from = item1.id + this.ROOM_ID_INDEX;
-    const to = item2.id + this.INSTANCE_ID_INDEX;
+  addEdge(item1, item2, isSource) {
+    let from;
+    let to;
+    if (isSource) {
+      from = item1.id + this.ROOM_ID_INDEX;
+      to = item2.id + this.INSTANCE_ID_INDEX;
+    } else {
+      to = item1.id + this.ROOM_ID_INDEX;
+      from = item2.id + this.INSTANCE_ID_INDEX;
+    }
     this.edges = [...this.edges, { from, to }];
   }
 
@@ -51,32 +58,24 @@ class BotsDataParser {
 
   parseData(data) {
     data.forEach((item) => {
-      // BOT Node
+      // INSTANCE NODE
       this.addNode(item, false);
 
       // SOURCE ROOM NODE & EDGE
       item.source_rooms.forEach((room) => {
         this.addNode(room, true);
-        this.addEdge(room, item);
+        this.addEdge(room, item, true);
       });
 
       // DESTINATION ROOM NODE & EDGE
       if (item.destination_rooms) {
         const room = item.destination_rooms;
         this.addNode(room, true);
-        this.addEdge(room, item);
+        this.addEdge(room, item, false);
       }
     });
     return ({ nodes: this.nodes, edges: this.edges });
   }
 }
 
-export default BotsDataParser;
-
-/*
-const fs = require('fs');
-const data = JSON.parse(fs.readFileSync('./testData.json', 'utf8'));
-const g = new BotsDataParser();
-const result = g.parseData(data);
-console.log(result);
-*/
+export default DataParser;

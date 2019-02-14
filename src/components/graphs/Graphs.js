@@ -3,7 +3,7 @@ import Graph from 'vis-react';
 import axios from 'axios';
 
 // Data Parser
-import graphsDataParser from './graphsDataParser';
+import DataParser from './DataParser';
 
 // Graph Style
 import './graphs.css';
@@ -24,7 +24,7 @@ class Graphs extends Component {
       headers: { 'Content-Type': 'application/json' },
       timeout: 5000
     });
-    const g = new graphsDataParser();
+    const g = new DataParser();
     const result = await g.parseData(data);
     this.setState({
       nodes: result.nodes,
