@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 // routes config
-import routes from './routes';
+import routes from '../../routes/routesPublic';
 
 // Component
 import Loading from '../../components/shared/loading/Loading';

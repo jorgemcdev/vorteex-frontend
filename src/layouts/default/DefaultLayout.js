@@ -20,7 +20,7 @@ import {
 import navigation from './navigation';
 
 // Routes config
-import routes from './routes';
+import routes from '../../routes/routesDefault';
 
 // Import Actions
 import { logoutRequest } from '../../actions';

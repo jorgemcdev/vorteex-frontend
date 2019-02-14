@@ -1,27 +1,27 @@
 import React from 'react';
 
-const Dashboard = React.lazy(() => import('../../components/dashboard/Dashboard'));
+const Dashboard = React.lazy(() => import('../components/dashboard/Dashboard'));
 
 // Instances
-const Instances = React.lazy(() => import('../../components/instances/list'));
-const InstancesNew = React.lazy(() => import('../../components/instances/forms/FormNew'));
-const InstancesEdit = React.lazy(() => import('../../components/instances/forms/FormEdit'));
+const Instances = React.lazy(() => import('../components/instances/list'));
+const InstancesNew = React.lazy(() => import('../components/instances/forms/FormNew'));
+const InstancesEdit = React.lazy(() => import('../components/instances/forms/FormEdit'));
 
 // Templates
-const Templates = React.lazy(() => import('../../components/templates'));
+const Templates = React.lazy(() => import('../components/templates'));
 
 // TemplateGroups
-const TemplatesGroups = React.lazy(() => import('../../components/templates-groups'));
+const TemplatesGroups = React.lazy(() => import('../components/templates-groups'));
 
 // Modules
-const Modules = React.lazy(() => import('../../components/modules'));
+const Modules = React.lazy(() => import('../components/modules'));
 
 // Rooms
-const Rooms = React.lazy(() => import('../../components/rooms'));
+const Rooms = React.lazy(() => import('../components/rooms'));
 
 // Pages
-const Page404 = React.lazy(() => import('../../components/shared/pages/Page404'));
-const Page500 = React.lazy(() => import('../../components/shared/pages/Page500'));
+const Page404 = React.lazy(() => import('../components/shared/pages/Page404'));
+const Page500 = React.lazy(() => import('../components/shared/pages/Page500'));
 
 const routes = [
   // Dashboard
