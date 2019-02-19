@@ -5,6 +5,7 @@ import * as modal from './core/modal';
 
 // App
 import * as instances from './app/instances';
+import * as templates from './app/templates';
 import * as rooms from './app/rooms';
 
 export {
@@ -14,5 +15,6 @@ export {
   modal,
   // App
   instances,
+  templates,
   rooms
 };

@@ -7,6 +7,8 @@ import modal from './core/modal';
 
 // App
 import instances from './app/instances';
+import templates from './app/templates';
+import rooms from './app/rooms';
 
 export default combineReducers({
   // Core
@@ -14,5 +16,7 @@ export default combineReducers({
   message,
   modal,
   // App
-  instances
+  instances,
+  templates,
+  rooms
 });
