@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 
 const ModalRedux = ({ isOpen, data, toogle }) => {
   const confirm = () => {
-    data.action();
     toogle();
+    data.action(data.id);
   };
 
   return (
