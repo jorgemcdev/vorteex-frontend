@@ -11,10 +11,10 @@ const bots = {
       timeout: API_TIMEOUT,
     })
   ),
-  getRooms: id => (
+  getRooms: (id, params) => (
     axios({
       method: 'get',
-      url: id ? `${API_URL}/rooms/${id}` : `${API_URL}/rooms/`,
+      url: id ? `${API_URL}/rooms/${id}` : `${API_URL}/rooms/?${params}`,
       headers: { 'Content-Type': 'application/json' },
       timeout: API_TIMEOUT,
     })
