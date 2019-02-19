@@ -14,7 +14,7 @@ const instances = {
   getInstances: id => (
     axios({
       method: 'get',
-      url: id ? `${API_URL}/instances/${id}` : `${API_URL}/instances/`,
+      url: id ? `${API_URL}/instances/${id}/` : `${API_URL}/instances/`,
       headers: { 'Content-Type': 'application/json' },
       timeout: API_TIMEOUT,
     })
@@ -31,7 +31,7 @@ const instances = {
   delInstances: id => (
     axios({
       method: 'delete',
-      url: `${API_URL}/instances/${id}`,
+      url: `${API_URL}/instances/${id}/`,
       headers: { 'Content-Type': 'application/json' },
       timeout: API_TIMEOUT,
     })
