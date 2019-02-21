@@ -11,6 +11,7 @@ import { ITEMS_PER_PAGE, VISIBLE_PAGES } from '../../../config';
 
 // Components
 import ListItems from './ListItems';
+import Alert from '../../shared/alert/Alert';
 
 class View extends Component {
   state = {
@@ -22,13 +23,16 @@ class View extends Component {
     listItems();
   }
 
+  componentWillUnmount() {
+    const { resetItems } = this.props;
+    resetItems();
+  }
 
   handleNewRecord = () => {
     // Redirect to NewForm
     const { history } = this.props;
     history.push(`${history.location.pathname}/new`);
   }
-
 
   handlePageChange = (current) => {
     // Update Active Page
@@ -40,24 +44,26 @@ class View extends Component {
     history.push(`${history.location.pathname}?page=${current}`);
   }
 
-  handleDelete = (e) => {
-    const { modalOpen } = this.props;
-    const { id } = e.target;
+  handleDelete = (id) => {
+    const { modalOpen, deleteItem } = this.props;
     const data = {
       type: 'danger',
       title: 'Confirmation',
       id,
-      text: `Delete this Record ? #${id}`,
+      text: 'Delete this Record ?',
       items: [],
       actionLabel: 'Confirm',
+      action: deleteItem,
       className: ''
     };
     modalOpen(data);
-    // Delete Record
   }
 
   render() {
-    const { items, isLoading } = this.props;
+    const {
+      items, isLoading, messages, delMessage
+    } = this.props;
+
     const { activePage } = this.state;
 
     return (
@@ -71,7 +77,19 @@ class View extends Component {
         </CardHeader>
 
         <CardBody>
+
+          {messages.map(message => (
+            <Alert
+              key={message.id}
+              type={message.type}
+              title={message.title}
+              text={message.text}
+              onDismiss={() => delMessage(message.id)}
+            />
+          ))}
+
           <Button color="primary" className="mb-3" onClick={this.handleNewRecord}>New Instance</Button>
+
           <ListItems
             // Items
             items={items}
@@ -96,12 +114,17 @@ View.defaultProps = {
 View.propTypes = {
   // Items
   items: PropTypes.array,
-  listItems: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  listItems: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  resetItems: PropTypes.func.isRequired,
+  // Messages
+  messages: PropTypes.array.isRequired,
+  delMessage: PropTypes.func.isRequired,
+  // Modal
+  modalOpen: PropTypes.func.isRequired,
   // History
   history: PropTypes.object.isRequired,
-  // Modal
-  modalOpen: PropTypes.func.isRequired
 };
 
 export default withRouter(View);

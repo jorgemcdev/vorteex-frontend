@@ -11,14 +11,24 @@ const instances = {
       timeout: API_TIMEOUT,
     })
   ),
-  getInstances: id => (
-    axios({
-      method: 'get',
-      url: id ? `${API_URL}/instances/${id}/` : `${API_URL}/instances/`,
-      headers: { 'Content-Type': 'application/json' },
-      timeout: API_TIMEOUT,
-    })
-  ),
+  getInstances: (id, params) => {
+    let url;
+    if (id) {
+      url = `${API_URL}/instances/${id}/`;
+    } else if (params) {
+      url = `${API_URL}/instances/${params}`;
+    } else {
+      url = `${API_URL}/instances/`;
+    }
+    return (
+      axios({
+        method: 'get',
+        url,
+        headers: { 'Content-Type': 'application/json' },
+        timeout: API_TIMEOUT,
+      })
+    );
+  },
   putInstances: data => (
     axios({
       method: 'put',

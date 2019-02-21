@@ -46,8 +46,8 @@ const ListItems = ({
                   <th>Description</th>
                   <th>Group</th>
                   <th>Template</th>
-                  <th>Destination Rooms</th>
-                  <th>Source Rooms</th>
+                  <th className="text-nowrap">Destination Rooms</th>
+                  <th className="text-nowrap">Source Rooms</th>
                   <th>{' '}</th>
                 </tr>
               </thead>

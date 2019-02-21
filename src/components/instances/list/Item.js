@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import { Button, Badge } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const Item = ({ item, handleDelete }) => {
@@ -9,6 +9,7 @@ const Item = ({ item, handleDelete }) => {
     id, name, codename, description, group, template, source_rooms, destination_rooms
   } = item;
 
+  // <Badge color="secondary">New</Badge>
   return (
     <React.Fragment>
       <tr>
@@ -18,10 +19,10 @@ const Item = ({ item, handleDelete }) => {
         <td>{description}</td>
         <td>{group}</td>
         <td>{template.name}</td>
-        <td>{destination_rooms !== null ? destination_rooms.name : ''}</td>
-        <td>{source_rooms.length}</td>
+        <td>{destination_rooms ? <Badge color="success">{destination_rooms.name}</Badge> : ''}</td>
+        <td>{source_rooms && source_rooms.map(el => <Badge className="mr-1 text-white" color="warning">{el.name}</Badge>)}</td>
         <td width="1%">
-          <Button outline color="danger" size="sm" id={id} onClick={handleDelete}>
+          <Button outline color="danger" size="sm" onClick={() => handleDelete(id)}>
             <i className="fa fa-minus" />
           </Button>
         </td>
@@ -38,7 +39,7 @@ Item.defaultProps = {
     description: '',
     group: '',
     template: '',
-    destination_rooms: {},
+    destination_rooms: null,
     source_rooms: [],
   }
 };

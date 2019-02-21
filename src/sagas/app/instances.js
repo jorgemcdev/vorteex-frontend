@@ -7,6 +7,8 @@ import { instances as t } from '../../constants';
 import {
   // Instances
   instancesSuccess, instancesFailure,
+  instancesNewFailure, instancesNewSuccess,
+  instancesDelSuccess, instancesDelFailure,
   // Messages
   addMessage
 } from '../../actions';
@@ -14,7 +16,7 @@ import {
 // API
 import api from '../../api';
 
-function* instancesList(action) {
+function* listItem(action) {
   try {
     // Api Call
     const result = yield call(api.instances.getInstances, action.payload);
@@ -26,9 +28,35 @@ function* instancesList(action) {
   }
 }
 
+function* newItem(action) {
+  try {
+    // Api Call
+    const result = yield call(api.instances.postInstances, action.payload);
+    // Save Data to Store
+    yield put(instancesNewSuccess(result.data));
+  } catch (error) {
+    yield put(instancesNewFailure());
+    yield put(addMessage('warning', 'Warn', `${error}`));
+  }
+}
+
+function* delItem(action) {
+  try {
+    // Api Call
+    yield call(api.instances.delInstances, action.payload);
+    // Save Data to Store
+    yield put(instancesDelSuccess(action.payload));
+  } catch (error) {
+    yield put(instancesDelFailure());
+    yield put(addMessage('warning', 'Warn', `${error}`));
+  }
+}
+
 // Watcher Sagas
 const instances = [
-  takeEvery(t.INSTANCES_REQUEST, instancesList)
+  takeEvery(t.INSTANCES_REQUEST, listItem),
+  takeEvery(t.INSTANCES_NEW_REQUEST, newItem),
+  takeEvery(t.INSTANCES_DEL_REQUEST, delItem)
 ];
 
 export default instances;
