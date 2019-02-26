@@ -26,10 +26,10 @@ class DataParser {
     let group;
     if (isRoom) {
       index = item.id + this.ROOM_ID_INDEX;
-      group = 0;
+      group = "Rooms";
     } else {
       index = item.id + this.INSTANCE_ID_INDEX;
-      group = 1;
+      group = item.group;
     }
 
     if (this.ids.indexOf(index) !== -1) {
