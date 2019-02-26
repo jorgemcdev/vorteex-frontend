@@ -21,7 +21,7 @@ const options = {
   // GROUPS COLORS
   groups: {
     useDefaultGroups: false,
-    0: {
+    'Rooms': {
       color: {
         background: 'rgba(31,119,180)',
         border: 'white',
@@ -35,7 +35,7 @@ const options = {
         color: 'rgba(0,0,0,0.5)'
       }
     },
-    1: {
+    'Collectors': {
       color: {
         background: 'rgb(255,127,14)',
         border: 'white',
@@ -49,7 +49,7 @@ const options = {
         color: 'rgba(0,0,0,0.5)'
       }
     },
-    2: {
+    'Parsers': {
       color: {
         background: 'rgb(214, 39, 40)',
         border: 'white',
@@ -63,7 +63,7 @@ const options = {
         color: 'rgba(0,0,0,0.5)'
       }
     },
-    3: {
+    'Experts': {
       color: {
         background: 'rgb(188, 189, 34)',
         border: 'white',
@@ -77,7 +77,7 @@ const options = {
         color: 'rgba(0,0,0,0.5)'
       }
     },
-    4: {
+    'Outputs': {
       color: {
         background: 'rgb(227, 119, 194)',
         border: 'white',
@@ -91,62 +91,62 @@ const options = {
         color: 'rgba(0,0,0,0.5)'
       }
     },
-    5: {
-      color: {
-        background: 'rgb(148, 103, 189)',
-        border: 'white',
-        highlight: {
-          background: 'white',
-          border: ' rgb(148, 103, 189)'
-        }
-      },
-      shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
-      }
-    },
-    6: {
-      color: {
-        background: 'rgb(140, 86, 75)',
-        border: 'white',
-        highlight: {
-          background: 'white',
-          border: 'rgb(140, 86, 75)'
-        }
-      },
-      shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
-      }
-    },
-    7: {
-      color: {
-        background: 'rgb(23, 190, 207)',
-        border: 'white',
-        highlight: {
-          background: 'white',
-          border: 'rgb(23, 190, 207)'
-        }
-      },
-      shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
-      }
-    },
-    8: {
-      color: {
-        background: 'rgb(44, 160, 44)',
-        border: 'white',
-        highlight: {
-          background: 'white',
-          border: 'rgb(44, 160, 44)'
-        }
-      },
-      shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
-      }
-    }
+    // 5: {
+    //   color: {
+    //     background: 'rgb(148, 103, 189)',
+    //     border: 'white',
+    //     highlight: {
+    //       background: 'white',
+    //       border: ' rgb(148, 103, 189)'
+    //     }
+    //   },
+    //   shadow: {
+    //     enabled: false,
+    //     color: 'rgba(0,0,0,0.5)'
+    //   }
+    // },
+    // 6: {
+    //   color: {
+    //     background: 'rgb(140, 86, 75)',
+    //     border: 'white',
+    //     highlight: {
+    //       background: 'white',
+    //       border: 'rgb(140, 86, 75)'
+    //     }
+    //   },
+    //   shadow: {
+    //     enabled: false,
+    //     color: 'rgba(0,0,0,0.5)'
+    //   }
+    // },
+    // 7: {
+    //   color: {
+    //     background: 'rgb(23, 190, 207)',
+    //     border: 'white',
+    //     highlight: {
+    //       background: 'white',
+    //       border: 'rgb(23, 190, 207)'
+    //     }
+    //   },
+    //   shadow: {
+    //     enabled: false,
+    //     color: 'rgba(0,0,0,0.5)'
+    //   }
+    // },
+    // 8: {
+    //   color: {
+    //     background: 'rgb(44, 160, 44)',
+    //     border: 'white',
+    //     highlight: {
+    //       background: 'white',
+    //       border: 'rgb(44, 160, 44)'
+    //     }
+    //   },
+    //   shadow: {
+    //     enabled: false,
+    //     color: 'rgba(0,0,0,0.5)'
+    //   }
+    // }
   }
 };
 
