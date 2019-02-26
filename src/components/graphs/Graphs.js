@@ -1,64 +1,42 @@
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import Graph from 'vis-react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
-// Data Parser
-import DataParser from './DataParser';
+// https://appendto.com/2017/05/creating-network-diagrams-vis-js/
 
-// Graph Style
-import './graphs.css';
+// Graph Options
+import options from './graphsOptions';
 
-class Graphs extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nodes: [],
-      edges: []
-    };
-  }
+const Graphs = ({ nodes, edges }) => {
+  const events = {
+    select(event) {
+      // Open Modal;
+    },
+    release(event) {
+      const xPos = Math.round(event.pointer.canvas.x);
+      const yPos = Math.round(event.pointer.canvas.y);
+      // Update Store
+    }
+  };
 
-  async componentDidMount() {
-    const { data } = await axios({
-      method: 'get',
-      url: 'http://vorteex.ovnisec.com:9000/instances/',
-      headers: { 'Content-Type': 'application/json' },
-      timeout: 5000
-    });
-    const g = new DataParser();
-    const result = await g.parseData(data);
-    this.setState({
-      nodes: result.nodes,
-      edges: result.edges
-    });
-  }
+  const nodesT = nodes.map(el => el);
+  const edgesT = edges.map(el => el);
 
-  render() {
-    const { nodes, edges } = this.state;
+  return (
+    <div id="mynetwork">
+      <Graph
+        graph={{ nodes: nodesT, edges: edgesT }}
+        options={options}
+        events={events}
+      />
+    </div>
+  );
+};
 
-    const graph = { nodes, edges };
-
-    const options = {
-      autoResize: true,
-      layout: {
-        hierarchical: false
-      },
-    };
-
-    const events = {
-      /*
-      select(event) {
-        var { nodes, edges } = event;
-      }
-      */
-    };
-    const show = <Graph graph={graph} options={options} events={events} />;
-
-    return (
-      <div id="mynetwork">
-        {show}
-      </div>
-    );
-  }
-}
+Graphs.propTypes = {
+  nodes: PropTypes.array.isRequired,
+  edges: PropTypes.array.isRequired,
+};
 
 export default Graphs;

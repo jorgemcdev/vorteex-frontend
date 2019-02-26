@@ -4,6 +4,7 @@ import * as message from './core/message';
 import * as modal from './core/modal';
 
 // App
+import * as graphs from './app/graphs';
 import * as instances from './app/instances';
 import * as templates from './app/templates';
 import * as rooms from './app/rooms';
@@ -14,6 +15,7 @@ export {
   message,
   modal,
   // App
+  graphs,
   instances,
   templates,
   rooms

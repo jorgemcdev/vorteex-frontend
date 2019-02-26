@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Graphs from '../graphs/GraphsView';
+import Graphs from '../graphs';
 
 const Dashboard = () => (
   <div className="mt-4">

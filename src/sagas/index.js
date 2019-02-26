@@ -4,6 +4,7 @@ import { all } from 'redux-saga/effects';
 import auth from './core/auth';
 
 // App
+import graphs from './app/graphs';
 import instances from './app/instances';
 import templates from './app/templates';
 import rooms from './app/rooms';
@@ -13,6 +14,7 @@ export default function* rootSaga() {
     // Core
     ...auth,
     // App
+    ...graphs,
     ...instances,
     ...templates,
     ...rooms
