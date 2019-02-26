@@ -6,7 +6,7 @@ const options = {
   // NODES
   nodes: {
     shape: 'dot',
-    size: 32,
+    size: 24,
     font: {
       size: 16
     },
@@ -23,72 +23,72 @@ const options = {
     useDefaultGroups: false,
     'Rooms': {
       color: {
-        background: 'rgba(31,119,180)',
-        border: 'white',
+        background: 'rgba(80,80,80)',
+        border: 'black',
         highlight: {
           background: 'white',
           border: 'rgba(31,119,180)'
         }
       },
       shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
+        enabled: true,
+        color: 'rgba(0,0,0,0.2)'
       }
     },
     'Collectors': {
       color: {
-        background: 'rgb(255,127,14)',
-        border: 'white',
+        background: 'rgb(214, 39, 40)',
+        border: 'black',
         highlight: {
           background: 'white',
           border: 'rgb(255,127,14)'
         }
       },
       shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
+        enabled: true,
+        color: 'rgba(0,0,0,0.2)'
       }
     },
     'Parsers': {
       color: {
-        background: 'rgb(214, 39, 40)',
-        border: 'white',
+        background: 'rgb(255,127,14)',
+        border: 'black',
         highlight: {
           background: 'white',
           border: 'rgb(214,39,40)'
         }
       },
       shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
+        enabled: true,
+        color: 'rgba(0,0,0,0.2)'
       }
     },
     'Experts': {
       color: {
-        background: 'rgb(188, 189, 34)',
-        border: 'white',
+        background: 'rgb(44, 200, 44)',
+        border: 'black',
         highlight: {
           background: 'white',
           border: 'rgb(188, 189, 34)'
         }
       },
       shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
+        enabled: true,
+        color: 'rgba(0,0,0,0.2)'
       }
     },
     'Outputs': {
       color: {
-        background: 'rgb(227, 119, 194)',
-        border: 'white',
+        background: 'rgb(40, 39, 214)',
+        border: 'black',
         highlight: {
           background: 'white',
           border: 'rgb(227, 119, 194)'
         }
       },
       shadow: {
-        enabled: false,
-        color: 'rgba(0,0,0,0.5)'
+        enabled: true,
+        color: 'rgba(0,0,0,0.2)'
       }
     },
     // 5: {
