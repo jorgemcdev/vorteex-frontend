@@ -8,6 +8,7 @@ import modal from './core/modal';
 // App
 import graphs from './app/graphs';
 import instances from './app/instances';
+import instancesParameters from './app/instancesParameters';
 import templates from './app/templates';
 import rooms from './app/rooms';
 
@@ -19,6 +20,7 @@ export default combineReducers({
   // App
   graphs,
   instances,
+  instancesParameters,
   templates,
   rooms
 });
