@@ -13,6 +13,24 @@ export const graphsFailure = () => ({
   type: t.GRAPHS_FAILURE
 });
 
+
+// Read
+export const graphsDropRequest = data => ({
+  type: t.GRAPHS_DROP_REQUEST,
+  payload: data
+});
+export const graphsDropStore = data => ({
+  type: t.GRAPHS_DROP_STORE,
+  payload: data
+});
+export const graphsDropSuccess = data => ({
+  type: t.GRAPHS_DROP_SUCCESS,
+  payload: data
+});
+export const graphsDropFailure = () => ({
+  type: t.GRAPHS_DROP_FAILURE
+});
+
 // Reset
 export const graphsReset = () => ({
   type: t.GRAPHS_RESET

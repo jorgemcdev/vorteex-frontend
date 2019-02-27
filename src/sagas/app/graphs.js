@@ -5,8 +5,9 @@ import { graphs as t } from '../../constants';
 
 // Import Action Creators
 import {
-  // Instances
+  // Graphs / Instances
   graphsSuccess, graphsFailure,
+  graphsDropStore, graphsDropFailure,
   // Messages
   addMessage
 } from '../../actions';
@@ -32,9 +33,21 @@ function* listItem(action) {
   }
 }
 
+function* dropItem(action) {
+  try {
+    console.log('DropPayload', action.payload);
+    // optimistic Update
+    yield put(graphsDropStore(action.payload));
+  } catch (error) {
+    yield put(graphsDropFailure());
+    yield put(addMessage('warning', 'Warn', `${error}`));
+  }
+}
+
 // Watcher Sagas
 const instances = [
   takeEvery(t.GRAPHS_REQUEST, listItem),
+  takeEvery(t.GRAPHS_DROP_REQUEST, dropItem),
 ];
 
 export default instances;

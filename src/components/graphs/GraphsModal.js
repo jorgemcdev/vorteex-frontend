@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 
-const GraphsModal = ({ isOpen }) => {
+const GraphsModal = ({ isOpen, toogle }) => {
   const confirm = () => {
     toogle();
   };
@@ -19,7 +19,7 @@ const GraphsModal = ({ isOpen }) => {
         <p>Form</p>
       </ModalBody>
       <ModalFooter>
-        <Button outline color={data.type} onClick={confirm}>Confirm</Button>
+        <Button outline color="primary" onClick={confirm}>Confirm</Button>
         <Button color="secondary" onClick={toogle}>Cancel</Button>
       </ModalFooter>
     </Modal>
@@ -27,7 +27,8 @@ const GraphsModal = ({ isOpen }) => {
 };
 
 GraphsModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  toogle: PropTypes.func.isRequired
 };
 
 export default GraphsModal;

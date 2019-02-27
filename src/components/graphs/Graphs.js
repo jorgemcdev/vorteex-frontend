@@ -8,15 +8,18 @@ import PropTypes from 'prop-types';
 // Graph Options
 import options from './graphsOptions';
 
-const Graphs = ({ nodes, edges }) => {
+const Graphs = ({ nodes, edges, dropGraph, toogle }) => {
   const events = {
-    select(event) {
-      // Open Modal;
-    },
-    release(event) {
+
+    dragEnd(event) {
+      const nodeId = event.nodes[0];
       const xPos = Math.round(event.pointer.canvas.x);
       const yPos = Math.round(event.pointer.canvas.y);
       // Update Store
+      dropGraph({ id: nodeId, x: xPos, y: yPos });
+    },
+    doubleClick(event) {
+      toogle();
     }
   };
 
@@ -37,6 +40,8 @@ const Graphs = ({ nodes, edges }) => {
 Graphs.propTypes = {
   nodes: PropTypes.array.isRequired,
   edges: PropTypes.array.isRequired,
+  dropGraph: PropTypes.func.isRequired,
+  toogle: PropTypes.func.isRequired
 };
 
 export default Graphs;

@@ -1,14 +1,12 @@
 const options = {
   autoResize: true,
-  layout: {
-    hierarchical: false
-  },
+  physics: false,
   // NODES
   nodes: {
     shape: 'dot',
     size: 24,
     font: {
-      size: 16
+      size: 18
     },
     shadow: false
   },
@@ -21,7 +19,7 @@ const options = {
   // GROUPS COLORS
   groups: {
     useDefaultGroups: false,
-    'Rooms': {
+    Rooms: {
       color: {
         background: 'rgba(80,80,80)',
         border: 'black',
@@ -35,9 +33,23 @@ const options = {
         color: 'rgba(0,0,0,0.2)'
       }
     },
-    'Collectors': {
+    Collectors: {
       color: {
         background: 'rgb(214, 39, 40)',
+        border: 'black',
+        highlight: {
+          background: 'white',
+          border: 'rgb(214, 39, 40)'
+        }
+      },
+      shadow: {
+        enabled: true,
+        color: 'rgba(0,0,0,0.2)'
+      }
+    },
+    Parsers: {
+      color: {
+        background: 'rgb(255,127,14)',
         border: 'black',
         highlight: {
           background: 'white',
@@ -49,27 +61,13 @@ const options = {
         color: 'rgba(0,0,0,0.2)'
       }
     },
-    'Parsers': {
-      color: {
-        background: 'rgb(255,127,14)',
-        border: 'black',
-        highlight: {
-          background: 'white',
-          border: 'rgb(214,39,40)'
-        }
-      },
-      shadow: {
-        enabled: true,
-        color: 'rgba(0,0,0,0.2)'
-      }
-    },
-    'Experts': {
+    Experts: {
       color: {
         background: 'rgb(44, 200, 44)',
         border: 'black',
         highlight: {
           background: 'white',
-          border: 'rgb(188, 189, 34)'
+          border: 'rgb(44, 200, 44)'
         }
       },
       shadow: {
@@ -77,13 +75,13 @@ const options = {
         color: 'rgba(0,0,0,0.2)'
       }
     },
-    'Outputs': {
+    Outputs: {
       color: {
         background: 'rgb(40, 39, 214)',
         border: 'black',
         highlight: {
           background: 'white',
-          border: 'rgb(227, 119, 194)'
+          border: 'rgb(40, 39, 214)'
         }
       },
       shadow: {

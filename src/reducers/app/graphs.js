@@ -30,6 +30,32 @@ const graphs = (state = initialState, action) => {
         edges: []
       };
 
+    // DROP NODES
+    case t.GRAPHS_DROP_REQUEST:
+      return {
+        ...state
+      };
+    case t.GRAPHS_DROP_STORE:
+      console.log('NODES:', state.nodes);
+      return {
+        ...state,
+        nodes: [...state.nodes.map(item => (
+          (item.id !== action.payload.id)
+            ? item
+            : { ...item, ...{ x: action.payload.x, y: action.payload.y } }))
+        ]
+      };
+    case t.GRAPHS_DROP_SUCCESS:
+      return {
+        ...state,
+        nodes: action.payload.nodes
+      };
+    case t.GRAPHS_DROP_FAILURE:
+      return {
+        ...state,
+        nodes: []
+      };
+
     // RESETS
     case t.GRAPHS_RESET:
       return {

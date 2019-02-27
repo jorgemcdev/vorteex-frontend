@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 class DataParser {
   constructor() {
     this.nodes = [];
@@ -24,12 +25,18 @@ class DataParser {
     const { name } = item;
     let index;
     let group;
+    let x;
+    let y;
     if (isRoom) {
       index = item.id + this.ROOM_ID_INDEX;
-      group = "Rooms";
+      group = 'Rooms';
+      x = item.x;
+      y = item.y;
     } else {
       index = item.id + this.INSTANCE_ID_INDEX;
       group = item.group;
+      x = item.x;
+      y = item.y;
     }
 
     if (this.ids.indexOf(index) !== -1) {
@@ -42,6 +49,8 @@ class DataParser {
         id: index,
         label: name,
         group,
+        x,
+        y
       }
     ];
 

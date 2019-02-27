@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import {
   // Instances
-  graphsRequest, graphsReset,
+  graphsRequest, graphsReset, graphsDropRequest,
   // Messages
   deleteMessage
 
@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => ({
   // Graphs
   listItems: () => dispatch(graphsRequest()),
   resetItems: () => dispatch(graphsReset()),
+  dropGraph: (data) => dispatch(graphsDropRequest(data)),
   // Messages
   delMessage: id => dispatch(deleteMessage(id)),
 });
