@@ -25,18 +25,22 @@ class DataParser {
     const { name } = item;
     let index;
     let group;
+    let nodeId;
     let x;
     let y;
     if (isRoom) {
       index = item.id + this.ROOM_ID_INDEX;
       group = 'Rooms';
-      x = item.x;
-      y = item.y;
+      nodeId = item.id;
+      x = item.position_x || undefined;
+      y = item.position_y || undefined;
     } else {
       index = item.id + this.INSTANCE_ID_INDEX;
       group = item.group;
-      x = item.x;
-      y = item.y;
+      nodeId = item.id;
+      x = item.position_x || undefined;
+      y = item.position_y || undefined;
+      nodeId = item.id;
     }
 
     if (this.ids.indexOf(index) !== -1) {
@@ -49,6 +53,7 @@ class DataParser {
         id: index,
         label: name,
         group,
+        nodeId,
         x,
         y
       }

@@ -23,7 +23,6 @@ class View extends Component {
   }
 
   toogle = () => {
-    console.log('ajsdhajkdhjka')
     this.setState(prevState => ({
       isOpen: !prevState.isOpen
     }));
@@ -63,7 +62,11 @@ class View extends Component {
 
         </CardBody>
 
-        <GraphsModal isOpen={isOpen} toogle={this.toogle} />
+        <GraphsModal
+          isOpen={isOpen}
+          toogle={this.toogle}
+          nodes={nodes}
+        />
 
       </Card>
     );

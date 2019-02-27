@@ -15,8 +15,9 @@ export const roomsNewFailure = () => ({
 });
 
 // Read
-export const roomsRequest = () => ({
-  type: t.ROOMS_REQUEST
+export const roomsRequest = id => ({
+  type: t.ROOMS_REQUEST,
+  payload: id
 });
 export const roomsSuccess = data => ({
   type: t.ROOMS_SUCCESS,

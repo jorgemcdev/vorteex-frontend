@@ -35,9 +35,19 @@ function* listItem(action) {
 
 function* dropItem(action) {
   try {
-    console.log('DropPayload', action.payload);
+    const {
+      id, x, y, nodeId, group
+    } = action.payload;
+
     // optimistic Update
-    yield put(graphsDropStore(action.payload));
+    yield put(graphsDropStore({ id, x, y }));
+
+    // Update xy Positions: Rooms or Instances
+    if (group === 'Rooms') {
+      yield call(api.rooms.patchRooms, nodeId, { position_x: x, position_y: y });
+    } else {
+      yield call(api.instances.patchInstances, nodeId, { position_x: x, position_y: y });
+    }
   } catch (error) {
     yield put(graphsDropFailure());
     yield put(addMessage('warning', 'Warn', `${error}`));

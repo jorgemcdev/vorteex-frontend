@@ -38,6 +38,15 @@ const instances = {
       timeout: API_TIMEOUT,
     })
   ),
+  patchInstances: (id, data) => (
+    axios({
+      method: 'patch',
+      url: `${API_URL}/instances/${id}/`,
+      headers: { 'Content-Type': 'application/json' },
+      data,
+      timeout: API_TIMEOUT,
+    })
+  ),
   delInstances: id => (
     axios({
       method: 'delete',

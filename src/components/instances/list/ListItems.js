@@ -56,15 +56,19 @@ const ListItems = ({
               </tbody>
             </Table>
 
-            <Pagination
-              activePage={activePage}
-              itemsCountPerPage={perPage}
-              totalItemsCount={totalItemsCount}
-              pageRangeDisplayed={visiblePages}
-              onChange={handlePageChange}
-              itemClass="page-item"
-              linkClass="page-link"
-            />
+            {startCount > 2
+              && (
+                <Pagination
+                  activePage={activePage}
+                  itemsCountPerPage={perPage}
+                  totalItemsCount={totalItemsCount}
+                  pageRangeDisplayed={visiblePages}
+                  onChange={handlePageChange}
+                  itemClass="page-item"
+                  linkClass="page-link"
+                />
+              )
+            }
           </React.Fragment>
         )
     }

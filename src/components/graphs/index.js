@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   // Graphs
   listItems: () => dispatch(graphsRequest()),
   resetItems: () => dispatch(graphsReset()),
-  dropGraph: (data) => dispatch(graphsDropRequest(data)),
+  dropGraph: data => dispatch(graphsDropRequest(data)),
   // Messages
   delMessage: id => dispatch(deleteMessage(id)),
 });

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL, API_TIMEOUT } from '../../config';
 
 const bots = {
-  postRoom: data => (
+  postRooms: data => (
     axios({
       method: 'post',
       url: `${API_URL}/rooms/`,
@@ -14,12 +14,12 @@ const bots = {
   getRooms: (id, params) => (
     axios({
       method: 'get',
-      url: id ? `${API_URL}/rooms/${id}` : `${API_URL}/rooms/?${params}`,
+      url: id ? `${API_URL}/rooms/${id}/` : `${API_URL}/rooms/?${params}/`,
       headers: { 'Content-Type': 'application/json' },
       timeout: API_TIMEOUT,
     })
   ),
-  putRoom: data => (
+  putRooms: data => (
     axios({
       method: 'put',
       url: `${API_URL}/rooms/`,
@@ -28,7 +28,16 @@ const bots = {
       timeout: API_TIMEOUT,
     })
   ),
-  delRoom: id => (
+  patchRooms: (id, data) => (
+    axios({
+      method: 'patch',
+      url: `${API_URL}/rooms/${id}/`,
+      headers: { 'Content-Type': 'application/json' },
+      data,
+      timeout: API_TIMEOUT,
+    })
+  ),
+  delRooms: id => (
     axios({
       method: 'delete',
       url: `${API_URL}/bots/${id}`,

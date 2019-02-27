@@ -1,35 +1,36 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import Graph from 'vis-react';
 import PropTypes from 'prop-types';
 
-// https://appendto.com/2017/05/creating-network-diagrams-vis-js/
-
 // Graph Options
 import options from './graphsOptions';
 
-const Graphs = ({ nodes, edges, dropGraph, toogle }) => {
+const Graphs = ({
+  nodes, edges, dropGraph, toogle
+}) => {
   const events = {
-
     dragEnd(event) {
-      const nodeId = event.nodes[0];
+      const node = event.nodes[0];
+      const { nodeId, group } = nodes.filter(el => el.id === node)[0];
       const xPos = Math.round(event.pointer.canvas.x);
       const yPos = Math.round(event.pointer.canvas.y);
       // Update Store
-      dropGraph({ id: nodeId, x: xPos, y: yPos });
+      dropGraph({
+        id: node, nodeId, group, x: xPos, y: yPos
+      });
     },
     doubleClick(event) {
-      toogle();
+      const node = event.nodes[0];
+      if (node) {
+        toogle(node);
+      }
     }
   };
-
-  const nodesT = nodes.map(el => el);
-  const edgesT = edges.map(el => el);
 
   return (
     <div id="mynetwork">
       <Graph
-        graph={{ nodes: nodesT, edges: edgesT }}
+        graph={{ nodes, edges }}
         options={options}
         events={events}
       />
