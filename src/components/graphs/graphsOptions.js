@@ -22,10 +22,10 @@ const options = {
     Rooms: {
       color: {
         background: 'rgba(80,80,80)',
-        border: 'black',
+        border: 'white',
         highlight: {
-          background: 'white',
-          border: 'rgba(31,119,180)'
+          background: 'rgba(80,80,80)',
+          border: 'yellow'
         }
       },
       shadow: {
@@ -36,10 +36,10 @@ const options = {
     Collectors: {
       color: {
         background: 'rgb(214, 39, 40)',
-        border: 'black',
+        border: 'white',
         highlight: {
-          background: 'white',
-          border: 'rgb(214, 39, 40)'
+          background: 'rgb(214, 39, 40)',
+          border: 'yellow'
         }
       },
       shadow: {
@@ -50,10 +50,10 @@ const options = {
     Parsers: {
       color: {
         background: 'rgb(255,127,14)',
-        border: 'black',
+        border: 'white',
         highlight: {
-          background: 'white',
-          border: 'rgb(255,127,14)'
+          background: 'rgb(255,127,14)',
+          border: 'yellow'
         }
       },
       shadow: {
@@ -64,10 +64,10 @@ const options = {
     Experts: {
       color: {
         background: 'rgb(44, 200, 44)',
-        border: 'black',
+        border: 'white',
         highlight: {
-          background: 'white',
-          border: 'rgb(44, 200, 44)'
+          background: 'rgb(44, 200, 44)',
+          border: 'yellow'
         }
       },
       shadow: {
@@ -78,73 +78,17 @@ const options = {
     Outputs: {
       color: {
         background: 'rgb(40, 39, 214)',
-        border: 'black',
+        border: 'white',
         highlight: {
-          background: 'white',
-          border: 'rgb(40, 39, 214)'
+          background: 'rgb(40, 39, 214)',
+          border: 'yellow'
         }
       },
       shadow: {
         enabled: true,
         color: 'rgba(0,0,0,0.2)'
       }
-    },
-    // 5: {
-    //   color: {
-    //     background: 'rgb(148, 103, 189)',
-    //     border: 'white',
-    //     highlight: {
-    //       background: 'white',
-    //       border: ' rgb(148, 103, 189)'
-    //     }
-    //   },
-    //   shadow: {
-    //     enabled: false,
-    //     color: 'rgba(0,0,0,0.5)'
-    //   }
-    // },
-    // 6: {
-    //   color: {
-    //     background: 'rgb(140, 86, 75)',
-    //     border: 'white',
-    //     highlight: {
-    //       background: 'white',
-    //       border: 'rgb(140, 86, 75)'
-    //     }
-    //   },
-    //   shadow: {
-    //     enabled: false,
-    //     color: 'rgba(0,0,0,0.5)'
-    //   }
-    // },
-    // 7: {
-    //   color: {
-    //     background: 'rgb(23, 190, 207)',
-    //     border: 'white',
-    //     highlight: {
-    //       background: 'white',
-    //       border: 'rgb(23, 190, 207)'
-    //     }
-    //   },
-    //   shadow: {
-    //     enabled: false,
-    //     color: 'rgba(0,0,0,0.5)'
-    //   }
-    // },
-    // 8: {
-    //   color: {
-    //     background: 'rgb(44, 160, 44)',
-    //     border: 'white',
-    //     highlight: {
-    //       background: 'white',
-    //       border: 'rgb(44, 160, 44)'
-    //     }
-    //   },
-    //   shadow: {
-    //     enabled: false,
-    //     color: 'rgba(0,0,0,0.5)'
-    //   }
-    // }
+    }
   }
 };
 
