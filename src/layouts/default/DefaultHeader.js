@@ -38,6 +38,7 @@ const DefaultHeader = (props) => {
       <Nav className="ml-auto mr-4" navbar>
         <AppHeaderDropdown direction="down">
           <DropdownToggle nav caret>
+            <i className="fa fa-user mr-2 fa-lg" />
             <strong>{user.username}</strong>
           </DropdownToggle>
           <DropdownMenu right style={{ right: 'auto' }}>
