@@ -12,14 +12,13 @@ import {
 import logo from '../../assets/images/brand/logo.jpg';
 import sygnet from '../../assets/images/brand/sygnet.jpg';
 
-//  const { children, ...attributes } = this.props;
-
 const DefaultHeader = (props) => {
   const { user, onLogout } = props;
 
   return (
     <React.Fragment>
       <AppSidebarToggler className="d-lg-none" display="md" mobile />
+
       <AppNavbarBrand
         full={{
           src: logo, width: 89, height: 25, alt: 'CoreUI Logo'
@@ -28,6 +27,7 @@ const DefaultHeader = (props) => {
           src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo'
         }}
       />
+
       <AppSidebarToggler className="d-md-down-none" display="lg" />
 
       <Nav className="d-md-down-none" navbar>
@@ -35,13 +35,14 @@ const DefaultHeader = (props) => {
           <NavLink to="/" tag={RRNavLink}>Dashboard</NavLink>
         </NavItem>
       </Nav>
+
       <Nav className="ml-auto mr-4" navbar>
         <AppHeaderDropdown direction="down">
           <DropdownToggle nav caret>
             <i className="fa fa-user mr-2 fa-lg" />
             <strong>{user.username}</strong>
           </DropdownToggle>
-          <DropdownMenu right style={{ right: 'auto' }}>
+          <DropdownMenu right>
             <DropdownItem header tag="div" className="text-center">
               <strong>Settings</strong>
             </DropdownItem>
@@ -63,8 +64,6 @@ const DefaultHeader = (props) => {
           </DropdownMenu>
         </AppHeaderDropdown>
       </Nav>
-      {/* <AppAsideToggler className="d-md-down-none" /> */}
-      {/* <AppAsideToggler className="d-lg-none" mobile /> */}
     </React.Fragment>
   );
 };
