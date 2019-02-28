@@ -55,7 +55,7 @@ const options = {
     Rooms: {
       color: {
         background: 'rgba(80,80,80)',
-              },
+      },
     },
     Collectors: {
       color: {
