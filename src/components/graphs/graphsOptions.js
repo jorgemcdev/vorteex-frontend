@@ -1,93 +1,81 @@
 const options = {
   autoResize: true,
   physics: false,
-  // NODES
+  interaction: {
+    dragView: false,
+    hover: true,
+    tooltipDelay: 1
+  },
   nodes: {
     shape: 'dot',
     size: 24,
+    borderWidth: 2,
     font: {
-      size: 18
+      size: 14,
+      color: '#333',
+      background: 'rgba(255,255,255,0.3)',
+      multi: true
     },
-    shadow: false
+    color: {
+      border: 'white',
+      highlight: {
+        background: '#D2E5FF',
+        border: '#2B7CE9'
+      },
+    },
+    shadow: {
+      enabled: false,
+    },
   },
-  // EDGES
   edges: {
-    width: 1,
-    shadow: false,
-    color: '#999'
+    width: 2,
+    shadow: {
+      enabled: false,
+    },
+    color: '#aaa',
+    arrows: {
+      from: {
+        enabled: false,
+      },
+      to: {
+        enabled: true,
+        scaleFactor: 0.4,
+      }
+    },
+    arrowStrikethrough: false,
+    smooth: {
+      enabled: true,
+      type: 'cubicBezier',
+      forceDirection: 'horizontal',
+      roundness: 0.6
+    }
   },
-  // GROUPS COLORS
   groups: {
     useDefaultGroups: false,
     Rooms: {
       color: {
         background: 'rgba(80,80,80)',
-        border: 'white',
-        highlight: {
-          background: 'rgba(80,80,80)',
-          border: 'yellow'
-        }
-      },
-      shadow: {
-        enabled: true,
-        color: 'rgba(0,0,0,0.2)'
-      }
+              },
     },
     Collectors: {
       color: {
         background: 'rgb(214, 39, 40)',
-        border: 'white',
-        highlight: {
-          background: 'rgb(214, 39, 40)',
-          border: 'yellow'
-        }
       },
-      shadow: {
-        enabled: true,
-        color: 'rgba(0,0,0,0.2)'
-      }
     },
     Parsers: {
       color: {
         background: 'rgb(255,127,14)',
-        border: 'white',
-        highlight: {
-          background: 'rgb(255,127,14)',
-          border: 'yellow'
-        }
       },
-      shadow: {
-        enabled: true,
-        color: 'rgba(0,0,0,0.2)'
-      }
     },
     Experts: {
       color: {
         background: 'rgb(44, 200, 44)',
-        border: 'white',
-        highlight: {
-          background: 'rgb(44, 200, 44)',
-          border: 'yellow'
-        }
       },
-      shadow: {
-        enabled: true,
-        color: 'rgba(0,0,0,0.2)'
-      }
     },
     Outputs: {
       color: {
-        background: 'rgb(40, 39, 214)',
-        border: 'white',
-        highlight: {
-          background: 'rgb(40, 39, 214)',
-          border: 'yellow'
-        }
+        background: 'rgb(60, 120, 216)',
       },
-      shadow: {
-        enabled: true,
-        color: 'rgba(0,0,0,0.2)'
-      }
     }
   }
 };

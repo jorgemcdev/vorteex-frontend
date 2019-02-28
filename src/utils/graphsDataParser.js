@@ -51,7 +51,7 @@ class DataParser {
       ...this.nodes,
       {
         id: index,
-        label: name,
+        label: '<b>' + name + '</b>',
         group,
         nodeId,
         x,
