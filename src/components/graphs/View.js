@@ -35,6 +35,44 @@ class View extends Component {
 
     const { isOpen } = this.state;
 
+    const title = `
+      <div style="text-align: center"><b>CleanMx Reports</b></div>
+      <table cellspacing="2" cellpadding="2" border="1">
+        <tr>
+          <td><b>Code Name:</b></td>
+          <td>cleanmx-collector</td>
+        </tr>
+        <tr>
+          <td><b>Description:</b>
+          <td>CleanMX Collector</td>
+        <tr>
+          <td><b>Group:</b></td>
+          <td>Collectors</td>
+        <tr>
+        <tr>
+          <td><b>Template:</b>
+          <td>CleanMX Collector</td>
+        </tr>
+      </table>
+      <div>Parameters</div>
+      <table cellspacing="2" cellpadding="2" border="1" width="100%">
+        <tr>
+          <td><b>Key</b></td>
+          <td><b>Value</b></td>
+        </tr>
+        <tr>
+          <td>AA</td>
+          <td>123</td>
+        </tr>
+      </table>
+    `;
+
+    const nodeTooltip = nodes.map((el) => {
+      return (
+        { ...el, ...{ title } }
+      );
+    });
+ 
     return (
       <Card>
         <CardBody>
@@ -53,7 +91,7 @@ class View extends Component {
             ? <Loading />
             : (
               <Graphs
-                nodes={nodes}
+                nodes={nodeTooltip}
                 edges={edges}
                 dropGraph={dropGraph}
                 toogle={this.toogle}
