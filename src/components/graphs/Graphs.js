@@ -11,16 +11,20 @@ const Graphs = ({
   const events = {
     dragEnd(event) {
       const node = event.nodes[0];
-      const { nodeId, group } = nodes.filter(el => el.id === node)[0];
-      const xPos = Math.round(event.pointer.canvas.x);
-      const yPos = Math.round(event.pointer.canvas.y);
-      // Update Store
-      dropGraph({
-        id: node, nodeId, group, x: xPos, y: yPos
-      });
+      // Only Drag if is a node
+      if (node) {
+        const { nodeId, group } = nodes.filter(el => el.id === node)[0];
+        const xPos = Math.round(event.pointer.canvas.x);
+        const yPos = Math.round(event.pointer.canvas.y);
+        // Update Store
+        dropGraph({
+          id: node, nodeId, group, x: xPos, y: yPos
+        });
+      }
     },
     doubleClick(event) {
       const node = event.nodes[0];
+      // Only Drag if is a node
       if (node) {
         toogle(node);
       }
