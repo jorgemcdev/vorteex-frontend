@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import {
   Card, CardHeader, CardTitle, CardBody, Button
@@ -59,6 +58,11 @@ class View extends Component {
     modalOpen(data);
   }
 
+  handleEdit = (id) => {
+    const { history } = this.props;
+    history.push(`${history.location.pathname}/edit/${id}`);
+  }
+
   render() {
     const {
       items, isLoading, messages, delMessage
@@ -95,6 +99,7 @@ class View extends Component {
             items={items}
             isLoading={isLoading}
             handleDelete={this.handleDelete}
+            handleEdit={this.handleEdit}
             // Pagination
             activePage={activePage}
             perPage={ITEMS_PER_PAGE}

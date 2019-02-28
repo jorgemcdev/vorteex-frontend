@@ -9,12 +9,14 @@ import Loading from '../../shared/loading/Loading';
 
 const ListItems = ({
   // Items
-  items, isLoading, handleDelete,
+  items, isLoading, handleDelete, handleEdit,
   // Pagination
   perPage, visiblePages, activePage, handlePageChange
 }) => {
   // pagination
+
   const totalItemsCount = items.length;
+  const numOfPages = Math.ceil(totalItemsCount / perPage);
   const startOffSet = (activePage - 1) * perPage;
   let startCount = 0;
   const paginatedItems = items.map((item, index) => {
@@ -25,6 +27,7 @@ const ListItems = ({
           key={item.id}
           item={item}
           handleDelete={handleDelete}
+          handleEdit={handleEdit}
         />
       );
     }
@@ -37,12 +40,12 @@ const ListItems = ({
         ? <Loading />
         : (
           <React.Fragment>
-            <Table hover bordered responsive size="sm">
+            <Table hover responsive size="sm">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>Codename</th>
+                  <th>Code Name</th>
                   <th>Description</th>
                   <th>Group</th>
                   <th>Template</th>
@@ -56,7 +59,7 @@ const ListItems = ({
               </tbody>
             </Table>
 
-            {startCount > 2
+            {numOfPages > 1
               && (
                 <Pagination
                   activePage={activePage}
@@ -71,7 +74,7 @@ const ListItems = ({
             }
           </React.Fragment>
         )
-    }
+      }
     </React.Fragment>
   );
 };
@@ -81,6 +84,7 @@ ListItems.propTypes = {
   items: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   handleDelete: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
   // Pagination
   perPage: PropTypes.number.isRequired,
   visiblePages: PropTypes.number.isRequired,
