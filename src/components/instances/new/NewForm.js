@@ -5,8 +5,10 @@ import {
   Button, Col, Form, Input,
   FormFeedback, FormGroup, Label
 } from 'reactstrap';
-
+import { Typeahead } from 'react-bootstrap-typeahead';
 import validationSchema from './instancesSchema';
+
+// https://stackoverflow.com/questions/51199653/react-boostrap-typeahead-reset-with-formik
 
 const NewForm = ({
   isLoading, templatesList, roomsList, newItem
@@ -69,6 +71,15 @@ const NewForm = ({
                   <FormFeedback>
                     {errors.template && touched.template && <div className="input-feedback">{errors.template}</div>}
                   </FormFeedback>
+                </Col>
+              </FormGroup>
+
+
+              <FormGroup row>
+                <Label for="template" sm={3}>Template *</Label>
+                <Col sm={9}>
+                    Typeahead
+
                 </Col>
               </FormGroup>
 
