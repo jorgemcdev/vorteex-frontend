@@ -2,11 +2,9 @@ import React from 'react';
 
 const DefaultFooter = () => (
   <React.Fragment>
-    <span>
-      2019 Vorteex
-    </span>
+    <span>&nbsp;</span>
     <span className="ml-auto">
-      <small>Template by CoreUI</small>
+      <small>2019 Vorteex</small>
     </span>
   </React.Fragment>
 );
