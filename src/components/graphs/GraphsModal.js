@@ -4,27 +4,19 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-
-const GraphsModal = ({ isOpen, toogle }) => {
-  const confirm = () => {
-    toogle();
-  };
-
-  return (
-    <Modal isOpen={isOpen}>
-      <ModalHeader>
-        Graphs
-      </ModalHeader>
-      <ModalBody>
-        <p>Form</p>
-      </ModalBody>
-      <ModalFooter>
-        <Button outline color="primary" onClick={confirm}>Confirm</Button>
-        <Button color="secondary" onClick={toogle}>Cancel</Button>
-      </ModalFooter>
-    </Modal>
-  );
-};
+const GraphsModal = ({ isOpen, toogle }) => (
+  <Modal isOpen={isOpen}>
+    <ModalHeader>
+      Graphs
+    </ModalHeader>
+    <ModalBody>
+      <p>Form</p>
+    </ModalBody>
+    <ModalFooter>
+      <Button outline color="primary" onClick={toogle}>Close</Button>
+    </ModalFooter>
+  </Modal>
+);
 
 GraphsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
