@@ -66,6 +66,7 @@
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "react": "^16.7.0",
+    "react-bootstrap-typeahead": "^4.0.0-alpha.2",
     "react-dom": "^16.7.0",
     "react-js-pagination": "^3.0.2",
     "react-redux": "^6.0.0",
