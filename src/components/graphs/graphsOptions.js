@@ -4,7 +4,7 @@ const options = {
   interaction: {
     dragView: false,
     hover: true,
-    tooltipDelay: 1
+    tooltipDelay: 1000
   },
   nodes: {
     shape: 'dot',
