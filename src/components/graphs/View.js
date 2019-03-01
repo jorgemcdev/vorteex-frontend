@@ -36,10 +36,15 @@ class View extends Component {
     const { isOpen } = this.state;
 
     const title = `
-      <div style="text-align: center"><b>CleanMx Reports</b></div>
-      <table cellspacing="2" cellpadding="2" border="1">
+      <div style="text-align: center; padding: 5px"><b>Instance</b></div>
+      <hr style="margin: 4px">
+      <table cellspacing="2" cellpadding="2" border="0">
         <tr>
-          <td><b>Code Name:</b></td>
+          <td><b>Name:</b></td>
+          <td>CleanMX</td>
+        </tr>
+        <tr>
+          <td><b>Codename:</b></td>
           <td>cleanmx-collector</td>
         </tr>
         <tr>
@@ -54,15 +59,20 @@ class View extends Component {
           <td>CleanMX Collector</td>
         </tr>
       </table>
-      <div>Parameters</div>
-      <table cellspacing="2" cellpadding="2" border="1" width="100%">
+      <div style="text-align: center; padding-bottom: 5px; padding-top: 25px"><b>Instance Parameters</b></div>
+      <hr style="margin: 4px">
+      <table cellspacing="2" cellpadding="2" border="0" width="50%">
         <tr>
-          <td><b>Key</b></td>
-          <td><b>Value</b></td>
+          <td><b>module:</b></td>
+          <td>vorteex.bots.collector</td>
         </tr>
         <tr>
-          <td>AA</td>
-          <td>123</td>
+          <td><b>http_url:</b></td>
+          <td>http://cleanmx.de/virus.php</td>
+        </tr>
+        <tr>
+          <td><b>interval:</b></td>
+          <td>3600</td>
         </tr>
       </table>
     `;
