@@ -2,13 +2,13 @@
 import React from 'react';
 import { Formik } from 'formik';
 import {
-  Button, Col, Form, Input,
-  FormFeedback, FormGroup, Label
+  Button, Col, Form, FormGroup, Input, Label
 } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import validationSchema from './instancesSchema';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-// https://stackoverflow.com/questions/51199653/react-boostrap-typeahead-reset-with-formik
+// Validation
+import validationSchema from './instancesSchema';
 
 const NewForm = ({
   isLoading, templatesList, roomsList, newItem
@@ -21,7 +21,7 @@ const NewForm = ({
       codename: values.codename,
       group: values.group,
       destination_rooms: values.destination_rooms && Number(values.destination_rooms),
-      source_rooms: values.source_rooms && values.source_rooms.map(el => Number(el))
+      source_rooms: values.source_rooms ? values.source_rooms : []
     };
     newItem(data);
   };
@@ -35,8 +35,8 @@ const NewForm = ({
           codename: '',
           description: '',
           group: '',
+          destination_rooms: '',
           source_rooms: '',
-          destination_rooms: ''
         }}
         onSubmit={values => handleNewItem(values)}
         validationSchema={validationSchema}
@@ -45,7 +45,7 @@ const NewForm = ({
           const {
             values, touched, errors, isValid, // isSubmitting, dirty
             handleChange, handleBlur, handleSubmit, // handleReset,
-            setFieldValue
+            setFieldValue, setFieldTouched
           } = props;
           return (
             <Form onSubmit={handleSubmit}>
@@ -53,33 +53,22 @@ const NewForm = ({
               <FormGroup row>
                 <Label for="template" sm={3}>Template *</Label>
                 <Col sm={9}>
-                  <Input
+                  <Typeahead
                     id="template"
-                    type="select"
-                    value={values.template}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.template && touched.template && 'text-input error is-invalid form-control'
-                    }
-                  >
-                    <option />
-                    {templatesList.map(item => (
-                      <option key={item.id} value={item.id}>{item.name}</option>
-                    ))}
-                  </Input>
-                  <FormFeedback>
-                    {errors.template && touched.template && <div className="input-feedback">{errors.template}</div>}
-                  </FormFeedback>
-                </Col>
-              </FormGroup>
-
-
-              <FormGroup row>
-                <Label for="template" sm={3}>Template *</Label>
-                <Col sm={9}>
-                    Typeahead
-
+                    multiple={false}
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const value = (selected.length > 0) ? selected[0].value : '';
+                      setFieldValue('template', value);
+                    }}
+                    onBlur={() => setFieldTouched('template', true)}
+                    labelKey="name"
+                    options={templatesList.map(el => ({ value: el.id, name: el.name }))}
+                  />
+                  <div className="text-danger">
+                    {(errors.template && touched.template) && errors.template}
+                  </div>
                 </Col>
               </FormGroup>
 
@@ -92,13 +81,8 @@ const NewForm = ({
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={
-                      errors.name && touched.name && 'text-input error is-invalid form-control'
-                    }
                   />
-                  <FormFeedback>
-                    {errors.name && touched.name && <div className="input-feedback">{errors.name}</div>}
-                  </FormFeedback>
+                  {errors.name && touched.name && <div className="text-danger">{errors.name}</div>}
                 </Col>
               </FormGroup>
 
@@ -111,13 +95,8 @@ const NewForm = ({
                     value={values.codename}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={
-                      errors.codename && touched.codename && 'text-input error is-invalid form-control'
-                    }
                   />
-                  <FormFeedback>
-                    {errors.codename && touched.codename && <div className="input-feedback">{errors.codename}</div>}
-                  </FormFeedback>
+                  {errors.codename && touched.codename && <div className="text-danger">{errors.codename}</div>}
                 </Col>
               </FormGroup>
 
@@ -126,17 +105,12 @@ const NewForm = ({
                 <Col sm={9}>
                   <Input
                     id="description"
-                    type="text"
+                    type="textarea"
                     value={values.description}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={
-                      errors.description && touched.description && 'text-input error is-invalid form-control'
-                    }
                   />
-                  <FormFeedback>
-                    {errors.description && touched.description && <div className="input-feedback">{errors.description}</div>}
-                  </FormFeedback>
+                  {errors.description && touched.description && <div className="text-danger">{errors.description}</div>}
                 </Col>
               </FormGroup>
 
@@ -149,67 +123,51 @@ const NewForm = ({
                     value={values.group}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={
-                      errors.group && touched.group && 'text-input error is-invalid form-control'
-                    }
                   />
-                  <FormFeedback>
-                    {errors.group && touched.group && <div className="input-feedback">{errors.group}</div>}
-                  </FormFeedback>
+                  {errors.group && touched.group && <div className="text-danger">{errors.group}</div>}
                 </Col>
               </FormGroup>
 
               <FormGroup row>
-                <Label for="destination_rooms" sm={3}>Destination Rooms *</Label>
+                <Label for="destination_rooms" sm={3}>Destination Rooms</Label>
                 <Col sm={9}>
-                  <Input
+                  <Typeahead
                     id="destination_rooms"
-                    type="select"
-                    value={values.destination_rooms}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.destination_rooms && touched.destination_rooms && 'text-input error is-invalid form-control'
-                    }
-                  >
-                    <option />
-                    {roomsList.map(item => (
-                      <option key={item.id} value={item.id}>{item.name}</option>
-                    ))}
-                  </Input>
-                  <FormFeedback>
-                    {errors.destination_rooms && touched.destination_rooms && <div className="input-feedback">{errors.destination_rooms}</div>}
-                  </FormFeedback>
+                    multiple={false}
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const value = (selected.length > 0) ? selected[0].value : '';
+                      setFieldValue('destination_rooms', value);
+                    }}
+                    onBlur={() => setFieldTouched('destination_rooms', true)}
+                    labelKey="name"
+                    options={roomsList.map(el => ({ value: el.id, name: el.name }))}
+                  />
+                  {errors.destination_rooms && touched.destination_rooms && <div className="text-danger">{errors.destination_rooms}</div>}
                 </Col>
               </FormGroup>
 
               <FormGroup row>
                 <Label for="source_rooms" sm={3}>Source Rooms</Label>
                 <Col sm={9}>
-                  <Input
+                  <Typeahead
                     id="source_rooms"
-                    type="select"
                     multiple
-                    style={{ height: 120 }}
-                    onChange={evt => setFieldValue(
-                      'source_rooms',
-                      [].slice
-                        .call(evt.target.selectedOptions)
-                        .map(option => option.value)
-                    )}
-                  >
-                    <option />
-                    {roomsList.map(item => (
-                      <option key={item.id} value={item.id}>{item.name}</option>
-                    ))}
-                  </Input>
-                  <FormFeedback>
-                    {errors.source_rooms && touched.source_rooms && <div className="input-feedback">{errors.source_rooms}</div>}
-                  </FormFeedback>
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const value = (selected.length > 0) ? selected.map(el => el.value) : [];
+                      setFieldValue('source_rooms', value);
+                    }}
+                    onBlur={() => setFieldTouched('source_rooms', true)}
+                    labelKey="name"
+                    options={roomsList.map(el => ({ value: el.id, name: el.name }))}
+                  />
                 </Col>
               </FormGroup>
 
-              <Button color="primary" className="px-4" type="submit" disabled={!isValid || isLoading}>
+              <Button color="primary" className="px-4 float-right" type="submit" disabled={!isValid || isLoading}>
                 {isLoading && <i className="fa fa-circle-o-notch fa-spin mr-1" />}
                 Submit
               </Button>

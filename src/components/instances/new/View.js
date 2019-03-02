@@ -64,7 +64,7 @@ class View extends Component {
             <CardFooter className="bg-white">
               <Row>
                 <Col>
-                  <Button outline onClick={this.handleCancel}>Cancel</Button>
+                  <Button outline onClick={this.handleCancel}>Back to Instances</Button>
                 </Col>
               </Row>
             </CardFooter>

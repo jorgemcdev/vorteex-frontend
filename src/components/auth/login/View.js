@@ -13,11 +13,15 @@ const View = ({
 }) => (
   <Container>
 
-    <Row className="justify-content-center">
-      <Col md="8">
-        {errors && <Alert type="danger" title="Login" text={errors} onDismiss={reset} />}
-      </Col>
-    </Row>
+    {errors
+      && (
+        <Row className="justify-content-center">
+          <Col md="8">
+            <Alert type="danger" title="Login" text={errors} onDismiss={reset} />
+          </Col>
+        </Row>
+      )
+    }
 
     <Row className="justify-content-center">
       <Col md="8">
