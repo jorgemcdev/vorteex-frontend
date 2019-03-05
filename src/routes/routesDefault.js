@@ -5,7 +5,7 @@ const Dashboard = React.lazy(() => import('../components/dashboard/Dashboard'));
 // Instances
 const Instances = React.lazy(() => import('../components/instances/list'));
 const InstancesNew = React.lazy(() => import('../components/instances/new'));
-const InstancesEdit = React.lazy(() => import('../components/instances/forms/FormEdit'));
+const InstancesEdit = React.lazy(() => import('../components/instances/edit'));
 
 // Templates
 const Templates = React.lazy(() => import('../components/templates'));

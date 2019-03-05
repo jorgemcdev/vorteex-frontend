@@ -15,8 +15,9 @@ export const instancesNewFailure = () => ({
 });
 
 // Read
-export const instancesRequest = () => ({
-  type: t.INSTANCES_REQUEST
+export const instancesRequest = data => ({
+  type: t.INSTANCES_REQUEST,
+  payload: data
 });
 export const instancesSuccess = data => ({
   type: t.INSTANCES_SUCCESS,
@@ -24,6 +25,16 @@ export const instancesSuccess = data => ({
 });
 export const instancesFailure = () => ({
   type: t.INSTANCES_FAILURE
+});
+
+// Select Instance
+export const instancesSelect = id => ({
+  type: t.INSTANCES_SELECT,
+  payload: id
+});
+
+export const instancesSelectReset = () => ({
+  type: t.INSTANCES_SELECT_RESET
 });
 
 // Update

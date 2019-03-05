@@ -2,7 +2,8 @@ import { instances as t } from '../../constants';
 
 const initialState = {
   isLoading: false,
-  items: []
+  items: [],
+  selected: {}
 };
 const instances = (state = initialState, action) => {
   switch (action.type) {
@@ -29,8 +30,7 @@ const instances = (state = initialState, action) => {
     case t.INSTANCES_REQUEST:
       return {
         ...state,
-        isLoading: true,
-        items: []
+        isLoading: true
       };
     case t.INSTANCES_SUCCESS:
       return {
@@ -43,6 +43,18 @@ const instances = (state = initialState, action) => {
         ...state,
         isLoading: false,
         items: []
+      };
+
+    // SELECTED
+    case t.INSTANCES_SELECT:
+      return {
+        ...state,
+        selected: [...state.items.filter(el => el.id === action.payload)]
+      };
+    case t.INSTANCES_SELECT_RESET:
+      return {
+        ...state,
+        selected: []
       };
 
     // UPDATE

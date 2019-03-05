@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   // Instances
   instancesRequest, instancesNewRequest, instancesDelRequest,
+  instancesSelect,
   // Messages
   deleteMessage,
   // Modal
@@ -24,6 +25,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Instances
   listItems: () => dispatch(instancesRequest()),
+  selectItem: id => dispatch(instancesSelect(id)),
   newItem: data => dispatch(instancesNewRequest(data)),
   deleteItem: id => dispatch(instancesDelRequest(id)),
   resetItems: () => dispatch(instancesReset()),

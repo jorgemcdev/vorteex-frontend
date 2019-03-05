@@ -77,12 +77,10 @@ class View extends Component {
       </table>
     `;
 
-    const nodeTooltip = nodes.map((el) => {
-      return (
-        { ...el, ...{ title } }
-      );
-    });
- 
+    const nodeTooltip = nodes.map(el => ({
+      ...el, ...{ title }
+    }));
+
     return (
       <Card>
         <CardBody>

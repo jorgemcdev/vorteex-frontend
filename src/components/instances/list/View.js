@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Card, CardHeader, CardTitle, CardBody, Button
 } from 'reactstrap';
@@ -12,7 +12,7 @@ import { ITEMS_PER_PAGE, VISIBLE_PAGES } from '../../../config';
 import ListItems from './ListItems';
 import Alert from '../../shared/alert/Alert';
 
-class View extends Component {
+class View extends PureComponent {
   state = {
     activePage: 1
   };
@@ -23,8 +23,8 @@ class View extends Component {
   }
 
   componentWillUnmount() {
-    const { resetItems } = this.props;
-    resetItems();
+    // const { resetItems } = this.props;
+    // resetItems();
   }
 
   handleNewRecord = () => {
@@ -59,7 +59,8 @@ class View extends Component {
   }
 
   handleEdit = (id) => {
-    const { history } = this.props;
+    const { history, selectItem } = this.props;
+    selectItem(id);
     history.push(`${history.location.pathname}/edit/${id}`);
   }
 
@@ -121,6 +122,7 @@ View.propTypes = {
   items: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
   listItems: PropTypes.func.isRequired,
+  selectItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
   resetItems: PropTypes.func.isRequired,
   // Messages

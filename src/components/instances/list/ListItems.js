@@ -19,7 +19,7 @@ const ListItems = ({
   const numOfPages = Math.ceil(totalItemsCount / perPage);
   const startOffSet = (activePage - 1) * perPage;
   let startCount = 0;
-  const paginatedItems = items.map((item, index) => {
+  const paginatedItems = items.length && items.map((item, index) => {
     if (index >= startOffSet && startCount < perPage) {
       startCount += 1;
       return (
