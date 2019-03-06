@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import api from '../../../api';
+const e = api.endpoints;
 
 const Schema = Yup.object().shape({
   module: Yup
@@ -12,8 +13,9 @@ const Schema = Yup.object().shape({
     .test('name', 'Name is in Use', async (value) => {
       let res;
       try {
-        res = await api.instances.getInstances(null, `?name=${value}`);
-      } catch (e) {
+        res = await api.request(e.INSTANCES, 'GET')(null, `name=${value}`);
+      } catch (error) {
+        console.error(error);
         return false;
       }
       return res.data.length === 0 && true;
@@ -24,8 +26,8 @@ const Schema = Yup.object().shape({
     .test('codename', 'Codename is in Use', async (value) => {
       let res;
       try {
-        res = await api.instances.getInstances(null, `?codename=${value}`);
-      } catch (e) {
+        res = await api.request(e.INSTANCES, 'GET')(null, `codename=${value}`);
+      } catch (error) {
         return false;
       }
       return res.data.length === 0 && true;

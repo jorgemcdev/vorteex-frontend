@@ -14,6 +14,7 @@ import {
 
 // API
 import api from '../../api';
+const e = api.endpoints
 
 // Utils
 import DataParser from '../../utils/graphsDataParser';
@@ -21,7 +22,7 @@ import DataParser from '../../utils/graphsDataParser';
 function* listItem(action) {
   try {
     // Api Call
-    const result = yield call(api.instances.getInstances, action.payload);
+    const result = yield call(api.request(e.INSTANCES, 'GET'), action.payload);
     // Parse Data
     const g = new DataParser();
     const parsedData = yield g.parseData(result.data);
@@ -44,9 +45,9 @@ function* dropItem(action) {
 
     // Update xy Positions: Rooms or Instances
     if (group === 'Rooms') {
-      yield call(api.rooms.patchRooms, nodeId, { position_x: x, position_y: y });
+      yield call(api.request(e.ROOMS, 'PATCH'), nodeId, { position_x: x, position_y: y });
     } else {
-      yield call(api.instances.patchInstances, nodeId, { position_x: x, position_y: y });
+      yield call(api.request(e.INSTANCES, 'PATCH'), nodeId, { position_x: x, position_y: y });
     }
   } catch (error) {
     yield put(graphsDropFailure());

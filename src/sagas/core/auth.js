@@ -16,6 +16,7 @@ import {
 
 // API
 import api from '../../api';
+const e = api.endpoints
 
 // Lib Helpers
 import { setLocalToken, unsetLocalToken, getLocalToken } from '../../utils/localToken';
@@ -24,7 +25,7 @@ import setAuthorizationToken from '../../utils/setAuthorizationToken';
 function* login(action) {
   try {
     // Get the token
-    const result = yield call(api.auth.login, action.payload);
+    const result = yield call(api.request(e.LOGIN, 'login'), action.payload);
     const { access, refresh } = result.data;
     // Set Local Token and Header Authorization
     yield setLocalToken(access, refresh);
@@ -61,7 +62,7 @@ function* tokenVerify() {
     // Set Header Authorization Token
     yield setAuthorizationToken(token);
     // Verify Token
-    yield call(api.auth.verify, token);
+    yield call(api.request(e.VERIFY, 'verify'), token);
     // Sucess
     yield put(tokenSuccess());
   } catch (error) {
