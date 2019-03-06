@@ -8,17 +8,21 @@ import Item from './Item';
 import Loading from '../../shared/loading/Loading';
 
 const ListItems = ({
-  // Items
-  items, isLoading, handleDelete, handleEdit,
-  // Pagination
-  perPage, visiblePages, activePage, handlePageChange
+  items, 
+  isLoading, 
+  handleDelete,
+  handleEdit,
+  perPage,
+  visiblePages,
+  activePage,
+  handlePageChange
 }) => {
-  // pagination
 
   const totalItemsCount = items.length;
   const numOfPages = Math.ceil(totalItemsCount / perPage);
   const startOffSet = (activePage - 1) * perPage;
   let startCount = 0;
+
   const paginatedItems = items.length && items.map((item, index) => {
     if (index >= startOffSet && startCount < perPage) {
       startCount += 1;
@@ -31,6 +35,7 @@ const ListItems = ({
         />
       );
     }
+
     return false;
   });
 
@@ -45,12 +50,11 @@ const ListItems = ({
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>Code Name</th>
+                  <th>Codename</th>
                   <th>Description</th>
-                  <th>Group</th>
-                  <th>Template</th>
-                  <th className="text-nowrap">Destination Rooms</th>
+                  <th>Module</th>
                   <th className="text-nowrap">Source Rooms</th>
+                  <th className="text-nowrap">Destination Rooms</th>
                   <th>{' '}</th>
                 </tr>
               </thead>
@@ -80,12 +84,10 @@ const ListItems = ({
 };
 
 ListItems.propTypes = {
-  // Items
   items: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
-  // Pagination
   perPage: PropTypes.number.isRequired,
   visiblePages: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
