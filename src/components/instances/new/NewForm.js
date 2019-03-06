@@ -1,73 +1,83 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { Formik } from 'formik';
-import {
-  Button, Col, Form, FormGroup, Input, Label
-} from 'reactstrap';
+import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+import { Formik } from 'formik';
+import React from 'react';
 
-// Validation
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 import validationSchema from './instancesSchema';
 
-const NewForm = ({
-  isLoading, templatesList, roomsList, newItem
-}) => {
+
+const NewForm = ({ newItem, isLoading, roomsList, modulesList }) => {
+
   const handleNewItem = (values) => {
+
     const data = {
-      template: Number(values.template),
+      module: Number(values.module),
       name: values.name,
-      description: values.description,
       codename: values.codename,
-      group: values.group,
+      description: values.description,
+      source_rooms: values.source_rooms ? values.source_rooms : [],
       destination_rooms: values.destination_rooms && Number(values.destination_rooms),
-      source_rooms: values.source_rooms ? values.source_rooms : []
     };
+
     newItem(data);
   };
 
   return (
     <React.Fragment>
-      <Formik
-        initialValues={{
-          template: '',
-          name: '',
-          codename: '',
-          description: '',
-          group: '',
-          destination_rooms: '',
-          source_rooms: '',
-        }}
-        onSubmit={values => handleNewItem(values)}
-        validationSchema={validationSchema}
-      >
-        {(props) => {
+
+      <Formik onSubmit={ values => handleNewItem(values) }
+              validationSchema={ validationSchema }
+              initialValues={{
+                module: '',
+                name: '',
+                codename: '',
+                description: '',
+                source_rooms: '',
+                destination_rooms: '',
+              }}>
+
+        
+        
+        { (props) => {
+          
           const {
-            values, touched, errors, isValid, // isSubmitting, dirty
-            handleChange, handleBlur, handleSubmit, // handleReset,
-            setFieldValue, setFieldTouched
+            values,
+            touched,
+            errors,
+            isValid,
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            setFieldValue,
+            setFieldTouched
+            // handleReset,
+            // isSubmitting,
+            // dirty,
           } = props;
+
           return (
             <Form onSubmit={handleSubmit}>
 
               <FormGroup row>
-                <Label for="template" sm={3}>Template *</Label>
+                <Label for="module" sm={3}>Module *</Label>
                 <Col sm={9}>
                   <Typeahead
-                    id="template"
+                    id="module"
                     multiple={false}
                     clearButton
                     selectHintOnEnter
                     onChange={(selected) => {
                       const value = (selected.length > 0) ? selected[0].value : '';
-                      setFieldValue('template', value);
+                      setFieldValue('module', value);
                     }}
-                    onBlur={() => setFieldTouched('template', true)}
+                    onBlur={() => setFieldTouched('module', true)}
                     labelKey="name"
-                    options={templatesList.map(el => ({ value: el.id, name: el.name }))}
+                    options={modulesList.map(el => ({ value: el.id, name: el.name }))}
                   />
                   <div className="text-danger">
-                    {(errors.template && touched.template) && errors.template}
+                    {(errors.module && touched.module) && errors.module}
                   </div>
                 </Col>
               </FormGroup>
@@ -87,7 +97,7 @@ const NewForm = ({
               </FormGroup>
 
               <FormGroup row>
-                <Label for="codename" sm={3}>Code Name *</Label>
+                <Label for="codename" sm={3}>Codename *</Label>
                 <Col sm={9}>
                   <Input
                     id="codename"
@@ -115,16 +125,21 @@ const NewForm = ({
               </FormGroup>
 
               <FormGroup row>
-                <Label for="group" sm={3}>Group *</Label>
+                <Label for="source_rooms" sm={3}>Source Rooms</Label>
                 <Col sm={9}>
-                  <Input
-                    id="group"
-                    type="text"
-                    value={values.group}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <Typeahead
+                    id="source_rooms"
+                    multiple
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const value = (selected.length > 0) ? selected.map(el => el.value) : [];
+                      setFieldValue('source_rooms', value);
+                    }}
+                    onBlur={() => setFieldTouched('source_rooms', true)}
+                    labelKey="name"
+                    options={roomsList.map(el => ({ value: el.id, name: el.name }))}
                   />
-                  {errors.group && touched.group && <div className="text-danger">{errors.group}</div>}
                 </Col>
               </FormGroup>
 
@@ -145,25 +160,6 @@ const NewForm = ({
                     options={roomsList.map(el => ({ value: el.id, name: el.name }))}
                   />
                   {errors.destination_rooms && touched.destination_rooms && <div className="text-danger">{errors.destination_rooms}</div>}
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
-                <Label for="source_rooms" sm={3}>Source Rooms</Label>
-                <Col sm={9}>
-                  <Typeahead
-                    id="source_rooms"
-                    multiple
-                    clearButton
-                    selectHintOnEnter
-                    onChange={(selected) => {
-                      const value = (selected.length > 0) ? selected.map(el => el.value) : [];
-                      setFieldValue('source_rooms', value);
-                    }}
-                    onBlur={() => setFieldTouched('source_rooms', true)}
-                    labelKey="name"
-                    options={roomsList.map(el => ({ value: el.id, name: el.name }))}
-                  />
                 </Col>
               </FormGroup>
 

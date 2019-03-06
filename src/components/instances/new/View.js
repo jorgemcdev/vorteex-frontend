@@ -1,20 +1,18 @@
 /* eslint-disable camelcase */
-import React, { Component } from 'react';
+import { Card, CardBody, CardTitle, CardFooter, CardHeader, Col, Row, Button } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
-
-import {
-  Card, CardBody, CardTitle, CardFooter, CardHeader,
-  Col, Row, Button
-} from 'reactstrap';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Alert from '../../shared/alert/Alert';
 import NewForm from './NewForm';
 
+
 class View extends Component {
+
   componentDidMount() {
-    const { listTemplates, listRooms } = this.props;
-    listTemplates();
+    const { listModules, listRooms } = this.props;
+    listModules();
     listRooms();
   }
 
@@ -24,9 +22,7 @@ class View extends Component {
   }
 
   render() {
-    const {
-      templatesList, isLoading, roomsList, messages, delMessage, newItem
-    } = this.props;
+    const { modulesList, isLoading, roomsList, messages, delMessage, newItem } = this.props;
 
     return (
       <Row>
@@ -54,7 +50,7 @@ class View extends Component {
 
               <NewForm
                 newItem={newItem}
-                templatesList={templatesList}
+                modulesList={modulesList}
                 roomsList={roomsList}
                 isLoading={isLoading}
               />
@@ -77,19 +73,14 @@ class View extends Component {
 }
 
 View.propTypes = {
-  // Instances
   newItem: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  // Templates
-  templatesList: PropTypes.array.isRequired,
-  listTemplates: PropTypes.func.isRequired,
-  // Rooms
+  modulesList: PropTypes.array.isRequired,
+  listModules: PropTypes.func.isRequired,
   roomsList: PropTypes.array.isRequired,
   listRooms: PropTypes.func.isRequired,
-  // Messages
   messages: PropTypes.array.isRequired,
   delMessage: PropTypes.func.isRequired,
-  // React Router
   history: PropTypes.object.isRequired
 };
 

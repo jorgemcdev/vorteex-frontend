@@ -1,35 +1,26 @@
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import View from './View';
+
 import {
-  // Instances
   instancesNewRequest,
-  // Templates + Rooms
-  templatesRequest, roomsRequest,
-  // Message
+  modulesRequest,
+  roomsRequest,
   deleteMessage
 } from '../../../actions/index';
 
-import View from './View';
-
 const mapStateToProps = state => ({
-  // Templates
-  templatesList: state.templates.items,
-  isLoading: state.templates.isLoading,
-  // Rooms
+  modulesList: state.modules.items,
+  isLoading: state.modules.isLoading,
   roomsList: state.rooms.items,
-  // Messages
   messages: state.message
 });
 
 const mapDispatchToProps = dispatch => ({
-  // Instances
   newItem: data => dispatch(instancesNewRequest(data)),
-  // Templates
-  listTemplates: () => dispatch(templatesRequest()),
-  // Rooms
+  listModules: () => dispatch(modulesRequest()),
   listRooms: () => dispatch(roomsRequest()),
-  // Messages
   delMessage: id => dispatch(deleteMessage(id))
 });
 
