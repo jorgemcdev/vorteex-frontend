@@ -23,6 +23,7 @@ import {
 // API
 import api from '../../api';
 
+
 // Create
 function* newItem(action) {
   try {
@@ -42,7 +43,7 @@ function* newItem(action) {
 function* listItem(action) {
   try {
     // Get Templates / Rooms
-    yield put(templatesRequest());
+    yield put(templatesRequest()); // FIXME: change this
     yield put(roomsRequest());
     // Api Call
     const result = yield call(api.instances.getInstances, action.payload);
