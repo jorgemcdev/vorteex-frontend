@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import api from '../../../api';
 
 const Schema = Yup.object().shape({
-  template: Yup
+  module: Yup
     .string()
     .required('Required'),
   name: Yup
@@ -21,7 +21,7 @@ const Schema = Yup.object().shape({
   codename: Yup
     .string()
     .required('Required')
-    .test('codename', 'Code Name is in Use', async (value) => {
+    .test('codename', 'Codename is in Use', async (value) => {
       let res;
       try {
         res = await api.instances.getInstances(null, `?codename=${value}`);
@@ -33,9 +33,6 @@ const Schema = Yup.object().shape({
   description: Yup
     .string()
     .required('Required'),
-  group: Yup
-    .string()
-    .required('Required')
 });
 
 export default Schema;

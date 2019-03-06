@@ -14,7 +14,6 @@ import EditForm from './EditForm';
 class View extends PureComponent {
   componentWillUnmount() {
     const { resetSelected } = this.props;
-    // resetSelected();
   }
 
   handleCancel = () => {
@@ -25,7 +24,7 @@ class View extends PureComponent {
   render() {
     const {
       item, isLoading, editItem,
-      templatesList, roomsList,
+      modulesList, roomsList,
       messages, delMessage
     } = this.props;
 
@@ -56,7 +55,7 @@ class View extends PureComponent {
               <EditForm
                 item={item}
                 editItem={editItem}
-                templatesList={templatesList}
+                modulesList={modulesList}
                 roomsList={roomsList}
                 isLoading={isLoading}
               />
@@ -79,19 +78,14 @@ class View extends PureComponent {
 }
 
 View.propTypes = {
-  // Instances
   item: PropTypes.object.isRequired,
   editItem: PropTypes.func.isRequired,
   resetSelected: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  // Templates
-  templatesList: PropTypes.array.isRequired,
-  // Rooms
+  modulesList: PropTypes.array.isRequired,
   roomsList: PropTypes.array.isRequired,
-  // Messages
   messages: PropTypes.array.isRequired,
   delMessage: PropTypes.func.isRequired,
-  // React Router
   history: PropTypes.object.isRequired
 };
 

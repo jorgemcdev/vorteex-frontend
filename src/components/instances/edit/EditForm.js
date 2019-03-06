@@ -1,46 +1,45 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Formik } from 'formik';
-import {
-  Button, Col, Form, FormGroup, Input, Label
-} from 'reactstrap';
+import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-// Validation
 import validationSchema from './instancesSchema';
 
-const EditForm = ({
-  isLoading, item, templatesList, roomsList, editItem
-}) => {
+const EditForm = ({ isLoading, item, modulesList, roomsList, editItem }) => {
+
   const handleEditItem = (values) => {
     const data = {
-      template: Number(values.template),
+      module: Number(values.module),
       name: values.name,
-      description: values.description,
       codename: values.codename,
-      group: values.group,
-      destination_rooms: values.destination_rooms && Number(values.destination_rooms),
-      source_rooms: values.source_rooms ? values.source_rooms : []
+      description: values.description,
+      source_rooms: values.source_rooms ? values.source_rooms : [],
+      destination_rooms: values.destination_rooms ? values.destination_rooms : '',
     };
     editItem(data);
   };
+
+  console.log('=====>>'); 
+  console.log(item); 
+  // console.log([] + roomsList.filter(el => el.id === item.destination_rooms.id));
 
   return (
     <React.Fragment>
       <Formik
         initialValues={{
-          template: '',
+          module: '',
           name: item.name,
           codename: item.codename,
           description: item.description,
-          group: item.group,
-          destination_rooms: roomsList.filter(el => el.id === item.destination_rooms.id),
-          source_rooms: 1,
+          source_rooms: [],
+          destination_rooms: item.destination_rooms ? roomsList.filter(el => el.id === item.destination_rooms.id) : '',
         }}
         onSubmit={values => handleEditItem(values)}
         validationSchema={validationSchema}
       >
+
         {(props) => {
           const {
             touched, errors, isValid, values, // isSubmitting, dirty
@@ -52,23 +51,23 @@ const EditForm = ({
             <Form onSubmit={handleSubmit}>
 
               <FormGroup row>
-                <Label for="template" sm={3}>Template *</Label>
+                <Label for="module" sm={3}>Module *</Label>
                 <Col sm={9}>
                   <Typeahead
-                    id="template"
+                    id="module"
                     multiple={false}
                     clearButton
                     onChange={(selected) => {
                       const value = (selected.length > 0) ? selected[0].value : '';
-                      setFieldValue('template', value);
+                      setFieldValue('module', value);
                     }}
-                    onBlur={() => setFieldTouched('template', true)}
+                    onBlur={() => setFieldTouched('module', true)}
                     labelKey="name"
-                    options={templatesList.map(el => ({ value: el.id, name: el.name }))}
-                    defaultSelected={templatesList.filter(el => el.id === item.template.id)}
+                    options={modulesList.map(el => ({ value: el.id, name: el.name }))}
+                    defaultSelected={modulesList.filter(el => el.id === item.module.id)}
                   />
                   <div className="text-danger">
-                    {(errors.template && touched.template) && errors.template}
+                    {(errors.module && touched.module) && errors.module}
                   </div>
                 </Col>
               </FormGroup>
@@ -130,6 +129,26 @@ const EditForm = ({
               </FormGroup>
 
               <FormGroup row>
+                <Label for="source_rooms" sm={3}>Source Rooms</Label>
+                <Col sm={9}>
+                  <Typeahead
+                    id="source_rooms"
+                    multiple
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const value = (selected.length > 0) ? selected.map(el => el.value) : [];
+                      setFieldValue('source_rooms', value);
+                    }}
+                    onBlur={() => setFieldTouched('source_rooms', true)}
+                    labelKey="name"
+                    options={[]} // roomsList.map(el => ({ value: el.id, name: el.name }))}
+                    defaultSelected={[]} // item.source_rooms.map(el => roomsList.filter(room => room.id === el))
+                  />
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
                 <Label for="destination_rooms" sm={3}>Destination Rooms</Label>
                 <Col sm={9}>
                   <Typeahead
@@ -144,31 +163,9 @@ const EditForm = ({
                     onBlur={() => setFieldTouched('destination_rooms', true)}
                     labelKey="name"
                     options={roomsList.map(el => ({ value: el.id, name: el.name }))}
-                    defaultSelected={roomsList.filter(el => el.id === item.destination_rooms.id)}
+                    defaultSelected={item.destination_rooms ? roomsList.filter(el => el.id === item.destination_rooms.id) : []}
                   />
                   {errors.destination_rooms && touched.destination_rooms && <div className="text-danger">{errors.destination_rooms}</div>}
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
-                <Label for="source_rooms" sm={3}>Source Rooms</Label>
-                <Col sm={9}>
-                  <Typeahead
-                    id="source_rooms"
-                    multiple
-                    clearButton
-                    selectHintOnEnter
-                    onChange={(selected) => {
-                      const value = (selected.length > 0) ? selected.map(el => el.value) : [];
-                      setFieldValue('source_rooms', value);
-                    }}
-                    onBlur={() => setFieldTouched('source_rooms', true)}
-                    labelKey="name"
-                    options={roomsList.map(el => ({ value: el.id, name: el.name }))}
-                    defaultSelected={
-                      item.source_rooms.map(el => roomsList.filter(room => room.id === el))
-                    }
-                  />
                 </Col>
               </FormGroup>
 
