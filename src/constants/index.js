@@ -8,6 +8,7 @@ import * as graphs from './app/graphs';
 import * as instances from './app/instances';
 import * as instancesParameters from './app/instancesParameters';
 import * as templates from './app/templates';
+import * as modules from './app/modules';
 import * as rooms from './app/rooms';
 
 
@@ -21,5 +22,6 @@ export {
   instances,
   instancesParameters,
   templates,
+  modules,
   rooms
 };

@@ -7,6 +7,7 @@ import auth from './core/auth';
 import graphs from './app/graphs';
 import instances from './app/instances';
 import templates from './app/templates';
+import modules from './app/modules';
 import rooms from './app/rooms';
 
 export default function* rootSaga() {
@@ -17,6 +18,7 @@ export default function* rootSaga() {
     ...graphs,
     ...instances,
     ...templates,
+    ...modules,
     ...rooms
   ]);
 }
