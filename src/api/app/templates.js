@@ -5,7 +5,7 @@ const Templates = {
   postTemplates: data => (
     axios({
       method: 'post',
-      url: `${API_URL}/template/`,
+      url: `${API_URL}/templates/`,
       headers: { 'Content-Type': 'application/json' },
       data,
       timeout: API_TIMEOUT,
@@ -14,7 +14,7 @@ const Templates = {
   getTemplates: (id, params) => (
     axios({
       method: 'get',
-      url: id ? `${API_URL}/template/${id}` : `${API_URL}/template/?${params}`,
+      url: id ? `${API_URL}/templates/${id}` : `${API_URL}/templates/?${params}`,
       headers: { 'Content-Type': 'application/json' },
       timeout: API_TIMEOUT,
     })
@@ -22,7 +22,7 @@ const Templates = {
   putTemplates: data => (
     axios({
       method: 'put',
-      url: `${API_URL}/template/`,
+      url: `${API_URL}/templates/`,
       headers: { 'Content-Type': 'application/json' },
       data,
       timeout: API_TIMEOUT,
@@ -31,7 +31,7 @@ const Templates = {
   delTemplates: id => (
     axios({
       method: 'delete',
-      url: `${API_URL}/template/${id}`,
+      url: `${API_URL}/templates/${id}`,
       headers: { 'Content-Type': 'application/json' },
       timeout: API_TIMEOUT,
     })
