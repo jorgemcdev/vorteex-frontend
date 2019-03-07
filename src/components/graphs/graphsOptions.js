@@ -52,27 +52,27 @@ const options = {
   },
   groups: {
     useDefaultGroups: false,
-    Rooms: {
+    rooms: {
       color: {
         background: 'rgba(80,80,80)',
       },
     },
-    Collectors: {
+    collectors: {
       color: {
         background: 'rgb(214, 39, 40)',
       },
     },
-    Parsers: {
+    parsers: {
       color: {
         background: 'rgb(255,127,14)',
       },
     },
-    Experts: {
+    experts: {
       color: {
         background: 'rgb(44, 200, 44)',
       },
     },
-    Outputs: {
+    outputs: {
       color: {
         background: 'rgb(60, 120, 216)',
       },

@@ -30,13 +30,13 @@ class DataParser {
     let y;
     if (isRoom) {
       index = item.id + this.ROOM_ID_INDEX;
-      group = 'Rooms';
+      group = 'rooms';
       nodeId = item.id;
       x = item.position_x || undefined;
       y = item.position_y || undefined;
     } else {
       index = item.id + this.INSTANCE_ID_INDEX;
-      group = item.group;
+      group = item.module.group;
       nodeId = item.id;
       x = item.position_x || undefined;
       y = item.position_y || undefined;
