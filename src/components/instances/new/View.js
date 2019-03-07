@@ -11,9 +11,10 @@ import NewForm from './NewForm';
 class View extends Component {
 
   componentDidMount() {
-    const { listModules, listRooms } = this.props;
+    const { listModules, listRooms, listTemplates } = this.props;
     listModules();
     listRooms();
+    listTemplates();
   }
 
   handleCancel = () => {
@@ -22,7 +23,7 @@ class View extends Component {
   }
 
   render() {
-    const { modulesList, isLoading, roomsList, messages, delMessage, newItem } = this.props;
+    const { templatesList, modulesList, isLoading, roomsList, messages, delMessage, newItem } = this.props;
 
     return (
       <Row>
@@ -50,6 +51,7 @@ class View extends Component {
 
               <NewForm
                 newItem={newItem}
+                templatesList={templatesList}
                 modulesList={modulesList}
                 roomsList={roomsList}
                 isLoading={isLoading}
@@ -75,6 +77,7 @@ class View extends Component {
 View.propTypes = {
   newItem: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  templatesList: PropTypes.array.isRequired,
   modulesList: PropTypes.array.isRequired,
   listModules: PropTypes.func.isRequired,
   roomsList: PropTypes.array.isRequired,
