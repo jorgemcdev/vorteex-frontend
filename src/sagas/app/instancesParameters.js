@@ -15,12 +15,13 @@ import {
 
 // API
 import api from '../../api';
-const e = api.endpoints
+
+const e = api.endpoints;
 
 function* listItem(action) {
   try {
     // Api Call
-    const result = yield call(api.request(e.INSTANCES_PARAMETERS, 'GET'), action.payload);
+    const result = yield call(api.request.get, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
     yield put(instancesParamSuccess(result.data));
   } catch (error) {
@@ -32,7 +33,7 @@ function* listItem(action) {
 function* newItem(action) {
   try {
     // Api Call
-    const result = yield call(api.request(e.INSTANCES_PARAMETERS, 'POST'), action.payload);
+    const result = yield call(api.request.post, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
     yield put(instancesParamNewSuccess(result.data));
   } catch (error) {
@@ -44,7 +45,7 @@ function* newItem(action) {
 function* delItem(action) {
   try {
     // Api Call
-    yield call(api.request(e.INSTANCES_PARAMETERS, 'DELETE'), action.payload);
+    yield call(api.request.delete, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
     yield put(instancesParamDelSuccess(action.payload));
   } catch (error) {

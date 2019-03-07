@@ -8,18 +8,18 @@ import {
   instancesSuccess, instancesFailure,
   instancesNewFailure, instancesNewSuccess,
   instancesDelSuccess, instancesDelFailure,
-  templatesRequest,
+  // templatesRequest,
   roomsRequest,
   addMessage
 } from '../../actions';
 
 import api from '../../api';
-const e = api.endpoints
 
+const e = api.endpoints;
 
 function* newItem(action) {
   try {
-    const result = yield call(api.request(e.INSTANCES, 'POST'), action.payload);
+    const result = yield call(api.request.post(e.INSTANCES, action.payload));
     yield put(instancesNewSuccess(result.data));
     history.push(`/instances/edit/${result.data.id}`);
   } catch (error) {
@@ -32,7 +32,7 @@ function* listItem(action) {
   try {
     yield put(roomsRequest());
 
-    const result = yield call(api.request(e.INSTANCES, 'GET'), action.payload);
+    const result = yield call(api.request.get, e.INSTANCES, action.payload);
 
     yield put(instancesSuccess(result.data));
   } catch (error) {
@@ -43,7 +43,7 @@ function* listItem(action) {
 
 function* editItem(action) {
   try {
-    const result = yield call(api.request(e.INSTANCES, 'PATCH'), action.payload.id, action.payload);
+    const result = yield call(api.request.patch, e.INSTANCES, action.payload.id, action.payload);
     yield put(instancesNewSuccess(result.data));
     history.push(`/instances/edit/${result.data.id}`);
   } catch (error) {
@@ -54,7 +54,7 @@ function* editItem(action) {
 
 function* delItem(action) {
   try {
-    yield call(api.request(e.INSTANCES, 'DELETE'), action.payload);
+    yield call(api.request.delete, e.INSTANCES, action.payload);
     yield put(instancesDelSuccess(action.payload));
   } catch (error) {
     yield put(instancesDelFailure());

@@ -14,15 +14,16 @@ import {
 
 // API
 import api from '../../api';
-const e = api.endpoints
 
 // Utils
 import DataParser from '../../utils/graphsDataParser';
 
+const e = api.endpoints;
+
 function* listItem(action) {
   try {
     // Api Call
-    const result = yield call(api.request(e.INSTANCES, 'GET'), action.payload);
+    const result = yield call(api.request.get, e.INSTANCES, action.payload);
     // Parse Data
     const g = new DataParser();
     const parsedData = yield g.parseData(result.data);
@@ -45,9 +46,9 @@ function* dropItem(action) {
 
     // Update xy Positions: Rooms or Instances
     if (group === 'Rooms') {
-      yield call(api.request(e.ROOMS, 'PATCH'), nodeId, { position_x: x, position_y: y });
+      yield call(api.request.patch, e.ROOMS, nodeId, { position_x: x, position_y: y });
     } else {
-      yield call(api.request(e.INSTANCES, 'PATCH'), nodeId, { position_x: x, position_y: y });
+      yield call(api.request.patch, e.INSTANCES, nodeId, { position_x: x, position_y: y });
     }
   } catch (error) {
     yield put(graphsDropFailure());
