@@ -16,16 +16,22 @@ import {
 
 // API
 import api from '../../api';
-const e = api.endpoints
+
 
 // Lib Helpers
 import { setLocalToken, unsetLocalToken, getLocalToken } from '../../utils/localToken';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 
+const e = api.endpoints;
+
 function* login(action) {
   try {
     // Get the token
-    const result = yield call(api.request(e.LOGIN, 'login'), action.payload);
+
+    const loginData = { username: action.payload.username, password: action.payload.password };
+
+    const result = yield call(api.request.post, e.LOGIN, loginData);
+
     const { access, refresh } = result.data;
     // Set Local Token and Header Authorization
     yield setLocalToken(access, refresh);
@@ -36,7 +42,7 @@ function* login(action) {
     // Redirect To Dashboard
     history.push('/');
   } catch (error) {
-    yield put(loginFailure('Something went wrong, Please try again.'));
+    yield put(loginFailure('Something went wrong, Please try again.', error.response));
   }
 }
 
@@ -62,7 +68,7 @@ function* tokenVerify() {
     // Set Header Authorization Token
     yield setAuthorizationToken(token);
     // Verify Token
-    yield call(api.request(e.VERIFY, 'verify'), token);
+    yield call(api.request.post, e.VERIFY, { token });
     // Sucess
     yield put(tokenSuccess());
   } catch (error) {

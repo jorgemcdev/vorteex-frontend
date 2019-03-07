@@ -18,7 +18,7 @@ const e = api.endpoints
 function* list(action) {
   try {
     // Api Call
-    const result = yield call(api.request(e.ROOMS, 'GET'), action.payload);
+    const result = yield call(api.request.get, e.ROOMS, action.payload);
     // Save Data to Store
     yield put(roomsSuccess(result.data));
   } catch (error) {

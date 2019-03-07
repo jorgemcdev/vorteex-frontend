@@ -8,11 +8,11 @@ import {
 } from '../../actions';
 
 import api from '../../api';
-const e = api.endpoints
+const e = api.endpoints;
 
 function* modulesList(action) {
   try {
-    const result = yield call(api.request(e.MODULES, 'GET'), action.payload);
+    const result = yield call(api.request.get, e.MODULES, action.payload);
     yield put(modulesSuccess(result.data));
   } catch (error) {
     yield put(modulesFailure());

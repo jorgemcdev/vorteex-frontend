@@ -13,12 +13,13 @@ import {
 
 // API
 import api from '../../api';
-const e = api.endpoints
+
+const e = api.endpoints;
 
 function* templatesList(action) {
   try {
     // Api Call
-    const result = yield call(api.request(e.TEMPLATES, 'GET'), action.payload);
+    const result = yield call(api.request.get, e.TEMPLATES, action.payload);
     // Save Data to Store
     yield put(templatesSuccess(result.data));
   } catch (error) {
