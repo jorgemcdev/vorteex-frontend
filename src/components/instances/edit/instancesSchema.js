@@ -13,7 +13,7 @@ const Schema = Yup.object().shape({
     .test('name', 'Name is in Use', async (value) => {
       let res;
       try {
-        res = await api.request(e.INSTANCES, 'GET')(null, `name=${value}`);
+        res = await api.request.get(e.INSTANCES, null, `name=${value}`);
       } catch (error) {
         return false;
       }
@@ -25,7 +25,7 @@ const Schema = Yup.object().shape({
     .test('codename', 'Codename is in Use', async (value) => {
       let res;
       try {
-        res = await api.request(e.INSTANCES, 'GET')(null, `codename=${value}`);
+        res = await api.request.get(e.INSTANCES, null, `codename=${value}`);
       } catch (error) {
         return false;
       }

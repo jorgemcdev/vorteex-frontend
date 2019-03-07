@@ -5,12 +5,14 @@ import View from './View';
 
 import {
   instancesNewRequest,
+  templatesRequest,
   modulesRequest,
   roomsRequest,
   deleteMessage
 } from '../../../actions/index';
 
 const mapStateToProps = state => ({
+  templatesList: state.templates.items,
   modulesList: state.modules.items,
   isLoading: state.modules.isLoading,
   roomsList: state.rooms.items,
@@ -19,6 +21,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   newItem: data => dispatch(instancesNewRequest(data)),
+  listTemplates: () => dispatch(templatesRequest()),
   listModules: () => dispatch(modulesRequest()),
   listRooms: () => dispatch(roomsRequest()),
   delMessage: id => dispatch(deleteMessage(id))

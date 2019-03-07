@@ -8,7 +8,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import validationSchema from './instancesSchema';
 
 
-const NewForm = ({ newItem, isLoading, roomsList, modulesList }) => {
+const NewForm = ({ newItem, isLoading, roomsList, modulesList, templatesList }) => {
 
   const handleNewItem = (values) => {
 
@@ -61,6 +61,32 @@ const NewForm = ({ newItem, isLoading, roomsList, modulesList }) => {
             <Form onSubmit={handleSubmit}>
 
               <FormGroup row>
+                <Label for="template" sm={3}>Template</Label>
+                <Col sm={9}>
+                  <Typeahead
+                    id="template"
+                    multiple={false}
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const template = (selected.length > 0) ? selected[0].data : '';
+                      console.log(template); // FIXME: remove debug line
+                      setFieldValue('name', template.name);
+                      setFieldValue('description', template.description);
+                      setFieldValue('module', template.module.id);
+                      // FIXME: set the module name correctly
+                    }}
+                    onBlur={() => setFieldTouched('template', true)}
+                    labelKey="name"
+                    options={templatesList.map(el => ({ value: el.id, name: el.name, data: el }))}
+                  />
+                  <div className="text-danger">
+                    {(errors.template && touched.template) && errors.template}
+                  </div>
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
                 <Label for="module" sm={3}>Module *</Label>
                 <Col sm={9}>
                   <Typeahead
@@ -70,6 +96,7 @@ const NewForm = ({ newItem, isLoading, roomsList, modulesList }) => {
                     selectHintOnEnter
                     onChange={(selected) => {
                       const value = (selected.length > 0) ? selected[0].value : '';
+                      console.log('MODULE seccc:', value)
                       setFieldValue('module', value);
                     }}
                     onBlur={() => setFieldTouched('module', true)}
