@@ -13,7 +13,8 @@ import {
 
 // API
 import api from '../../api';
-const e = api.endpoints
+
+const e = api.endpoints;
 
 function* list(action) {
   try {

@@ -8,6 +8,7 @@ import {
 } from '../../actions';
 
 import api from '../../api';
+
 const e = api.endpoints;
 
 function* modulesList(action) {
