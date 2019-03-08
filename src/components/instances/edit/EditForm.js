@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Formik } from 'formik';
-import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
+import {
+  Button, Col, Form, FormGroup, Input, Label
+} from 'reactstrap';
 
 import validationSchema from './instancesSchema';
 
-const EditForm = ({ isLoading, item, modulesList, roomsList, editItem }) => {
-
+const EditForm = ({
+  isLoading, item, modulesList, roomsList, templatesList, editItem
+}) => {
   const handleEditItem = (values) => {
     const data = {
       module: Number(values.module),
@@ -21,21 +24,19 @@ const EditForm = ({ isLoading, item, modulesList, roomsList, editItem }) => {
     editItem(data);
   };
 
-  console.log('=====>>'); 
-  console.log(item); 
-  // console.log([] + roomsList.filter(el => el.id === item.destination_rooms.id));
+  const initialValues = {
+    module: '',
+    name: item.name,
+    codename: item.codename,
+    description: item.description,
+    source_rooms: [],
+    destination_rooms: []
+  };
 
   return (
     <React.Fragment>
       <Formik
-        initialValues={{
-          module: '',
-          name: item.name,
-          codename: item.codename,
-          description: item.description,
-          source_rooms: [],
-          destination_rooms: item.destination_rooms ? roomsList.filter(el => el.id === item.destination_rooms.id) : '',
-        }}
+        initialValues={initialValues}
         onSubmit={values => handleEditItem(values)}
         validationSchema={validationSchema}
       >
@@ -49,6 +50,40 @@ const EditForm = ({ isLoading, item, modulesList, roomsList, editItem }) => {
 
           return (
             <Form onSubmit={handleSubmit}>
+
+              <FormGroup row>
+                <Label for="template" sm={3}>Template</Label>
+                <Col sm={9}>
+                  <Typeahead
+                    id="template"
+                    multiple={false}
+                    clearButton
+                    selectHintOnEnter
+                    onChange={(selected) => {
+                      const template = (selected.length > 0) ? selected[0].data : '';
+                      // Autofill
+                      if (template.module) {
+                        setFieldValue('module', template.module);
+                        setFieldTouched('module', true);
+                      }
+                      if (template.name) {
+                        setFieldValue('name', template.name);
+                        setFieldTouched('name', true);
+                      }
+                      if (template.description) {
+                        setFieldValue('description', template.description);
+                        setFieldTouched('description', true);
+                      }
+                    }}
+                    onBlur={() => setFieldTouched('template', true)}
+                    labelKey="name"
+                    options={templatesList.map(el => ({ value: el.id, name: el.name, data: el }))}
+                  />
+                  <div className="text-danger">
+                    {(errors.template && touched.template) && errors.template}
+                  </div>
+                </Col>
+              </FormGroup>
 
               <FormGroup row>
                 <Label for="module" sm={3}>Module *</Label>
@@ -115,20 +150,6 @@ const EditForm = ({ isLoading, item, modulesList, roomsList, editItem }) => {
               </FormGroup>
 
               <FormGroup row>
-                <Label for="group" sm={3}>Group *</Label>
-                <Col sm={9}>
-                  <Input
-                    id="group"
-                    type="text"
-                    value={values.description}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.group && touched.group && <div className="text-danger">{errors.group}</div>}
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
                 <Label for="source_rooms" sm={3}>Source Rooms</Label>
                 <Col sm={9}>
                   <Typeahead
@@ -142,8 +163,8 @@ const EditForm = ({ isLoading, item, modulesList, roomsList, editItem }) => {
                     }}
                     onBlur={() => setFieldTouched('source_rooms', true)}
                     labelKey="name"
-                    options={[]} // roomsList.map(el => ({ value: el.id, name: el.name }))}
-                    defaultSelected={[]} // item.source_rooms.map(el => roomsList.filter(room => room.id === el))
+                    options={roomsList.map(el => ({ value: el.id, name: el.name }))}
+                    defaultSelected={item.source_rooms.map(el => ({ value: el.id, name: el.name }))}
                   />
                 </Col>
               </FormGroup>

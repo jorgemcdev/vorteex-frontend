@@ -12,10 +12,6 @@ import Alert from '../../shared/alert/Alert';
 import EditForm from './EditForm';
 
 class View extends PureComponent {
-  componentWillUnmount() {
-    const { resetSelected } = this.props;
-  }
-
   handleCancel = () => {
     const { history } = this.props;
     history.push('/instances');
@@ -24,7 +20,7 @@ class View extends PureComponent {
   render() {
     const {
       item, isLoading, editItem,
-      modulesList, roomsList,
+      modulesList, roomsList, templatesList,
       messages, delMessage
     } = this.props;
 
@@ -57,6 +53,7 @@ class View extends PureComponent {
                 editItem={editItem}
                 modulesList={modulesList}
                 roomsList={roomsList}
+                templatesList={templatesList}
                 isLoading={isLoading}
               />
 
@@ -80,8 +77,8 @@ class View extends PureComponent {
 View.propTypes = {
   item: PropTypes.object.isRequired,
   editItem: PropTypes.func.isRequired,
-  resetSelected: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  templatesList: PropTypes.func.isRequired,
   modulesList: PropTypes.array.isRequired,
   roomsList: PropTypes.array.isRequired,
   messages: PropTypes.array.isRequired,

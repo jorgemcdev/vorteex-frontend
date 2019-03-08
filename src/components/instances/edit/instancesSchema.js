@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
-
 import api from '../../../api';
+
 const e = api.endpoints;
 
 const Schema = Yup.object().shape({

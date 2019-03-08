@@ -5,6 +5,7 @@ import View from './View';
 const mapStateToProps = state => ({
   item: state.instances.selected[0],
   isLoading: state.instances.isLoading,
+  templatesList: state.templates.items,
   modulesList: state.modules.items,
   roomsList: state.rooms.items,
   messages: state.message
