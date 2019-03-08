@@ -45,7 +45,7 @@ function* newItem(action) {
 function* delItem(action) {
   try {
     // Api Call
-    yield call(api.request.delete, e.INSTANCES_PARAMETERS, action.payload);
+    yield call(api.request.del, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
     yield put(instancesParamDelSuccess(action.payload));
   } catch (error) {
