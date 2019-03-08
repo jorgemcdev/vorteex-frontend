@@ -1,4 +1,3 @@
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import View from './View';
@@ -30,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(View));
+)(View);
