@@ -33,10 +33,15 @@ class NewForm extends Component {
   onChangeTemplate = async (setFieldValue, selected) => {
     const template = (selected.length > 0) ? selected[0].data : '';
     // Autofill text Fields
-
-    setFieldValue('module', template.module);
-    setFieldValue('name', template.name);
-    setFieldValue('description', template.description);
+    if (template.module) {
+      setFieldValue('module', template.module);
+    }
+    if (template.name) {
+      setFieldValue('name', template.name);
+    }
+    if (template.description) {
+      setFieldValue('description', template.description);
+    }
   }
 
   render() {
