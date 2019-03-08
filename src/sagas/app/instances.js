@@ -54,7 +54,7 @@ function* editItem(action) {
 
 function* delItem(action) {
   try {
-    yield call(api.request.delete, e.INSTANCES, action.payload);
+    yield call(api.request.del, e.INSTANCES, action.payload);
     yield put(instancesDelSuccess(action.payload));
   } catch (error) {
     yield put(instancesDelFailure());
