@@ -9,7 +9,6 @@ import NewForm from './NewForm';
 
 
 class View extends Component {
-
   componentDidMount() {
     const { listModules, listRooms, listTemplates } = this.props;
     listModules();
@@ -23,7 +22,9 @@ class View extends Component {
   }
 
   render() {
-    const { templatesList, modulesList, isLoading, roomsList, messages, delMessage, newItem } = this.props;
+    const {
+      templatesList, modulesList, isLoading, roomsList, messages, delMessage, newItem
+    } = this.props;
 
     return (
       <Row>
@@ -78,6 +79,7 @@ View.propTypes = {
   newItem: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   templatesList: PropTypes.array.isRequired,
+  listTemplates: PropTypes.array.isRequired,
   modulesList: PropTypes.array.isRequired,
   listModules: PropTypes.func.isRequired,
   roomsList: PropTypes.array.isRequired,
