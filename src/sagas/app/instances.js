@@ -19,7 +19,7 @@ const e = api.endpoints;
 
 function* newItem(action) {
   try {
-    const result = yield call(api.request.post(e.INSTANCES, action.payload));
+    const result = yield call(api.request.post, e.INSTANCES, action.payload);
     yield put(instancesNewSuccess(result.data));
     history.push(`/instances/edit/${result.data.id}`);
   } catch (error) {

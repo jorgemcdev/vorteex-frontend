@@ -70,11 +70,9 @@ const NewForm = ({ newItem, isLoading, roomsList, modulesList, templatesList }) 
                     selectHintOnEnter
                     onChange={(selected) => {
                       const template = (selected.length > 0) ? selected[0].data : '';
-                      console.log(template); // FIXME: remove debug line
                       setFieldValue('name', template.name);
                       setFieldValue('description', template.description);
-                      setFieldValue('module', template.module.id);
-                      // FIXME: set the module name correctly
+                      setFieldValue('module', template.module);
                     }}
                     onBlur={() => setFieldTouched('template', true)}
                     labelKey="name"
@@ -102,6 +100,7 @@ const NewForm = ({ newItem, isLoading, roomsList, modulesList, templatesList }) 
                     onBlur={() => setFieldTouched('module', true)}
                     labelKey="name"
                     options={modulesList.map(el => ({ value: el.id, name: el.name }))}
+                    selected={modulesList.filter(el => (el.id === values.module) && ({ value: el.id, name: el.name }))}
                   />
                   <div className="text-danger">
                     {(errors.module && touched.module) && errors.module}
