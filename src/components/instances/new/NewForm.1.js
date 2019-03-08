@@ -1,14 +1,14 @@
-/* eslint-disable react/prop-types */
+import React from 'react';
+import { Formik } from 'formik';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 import {
   Button, Col, Form, FormGroup, Input, Label
 } from 'reactstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
-import { Formik } from 'formik';
-import React from 'react';
+import PropTypes from 'prop-types';
 
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+// Validation Schema
 import validationSchema from './instancesSchema';
-
 
 const NewForm = ({
   newItem, isLoading, roomsList, modulesList, templatesList
@@ -22,8 +22,16 @@ const NewForm = ({
       source_rooms: values.source_rooms ? values.source_rooms : [],
       destination_rooms: values.destination_rooms && Number(values.destination_rooms),
     };
-
     newItem(data);
+  };
+
+  const initialValues = {
+    module: '',
+    name: '',
+    codename: '',
+    description: '',
+    source_rooms: '',
+    destination_rooms: '',
   };
 
   return (
@@ -31,14 +39,7 @@ const NewForm = ({
       <Formik
         onSubmit={values => handleNewItem(values)}
         validationSchema={validationSchema}
-        initialValues={{
-          module: '',
-          name: '',
-          codename: '',
-          description: '',
-          source_rooms: '',
-          destination_rooms: '',
-        }}
+        initialValues={initialValues}
       >
         {(props) => {
           const {
@@ -61,9 +62,19 @@ const NewForm = ({
                     selectHintOnEnter
                     onChange={(selected) => {
                       const template = (selected.length > 0) ? selected[0].data : '';
-                      setFieldValue('name', template.name);
-                      setFieldValue('description', template.description);
-                      setFieldValue('module', template.module.id);
+                      // Autofill
+                      if (template.module) {
+                        setFieldValue('module', template.module);
+                        setFieldTouched('module', true);
+                      }
+                      if (template.name) {
+                        setFieldValue('name', template.name);
+                        setFieldTouched('name', true);
+                      }
+                      if (template.description) {
+                        setFieldValue('description', template.description);
+                        setFieldTouched('description', true);
+                      }
                     }}
                     onBlur={() => setFieldTouched('template', true)}
                     labelKey="name"
@@ -90,7 +101,7 @@ const NewForm = ({
                     onBlur={() => setFieldTouched('module', true)}
                     labelKey="name"
                     options={modulesList.map(el => ({ value: el.id, name: el.name }))}
-                    defaultSelected={template.module.id && modulesList.filter(el => el.id === this.state.module)}
+                    selected={modulesList.filter(el => (el.id === values.module) && ({ value: el.id, name: el.name }))}
                   />
                   <div className="text-danger">
                     {(errors.module && touched.module) && errors.module}
@@ -190,6 +201,24 @@ const NewForm = ({
       </Formik>
     </React.Fragment>
   );
+};
+
+NewForm.propTypes = {
+  newItem: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  roomsList: PropTypes.array.isRequired,
+  modulesList: PropTypes.array.isRequired,
+  templatesList: PropTypes.array.isRequired,
+  // Formik
+  values: PropTypes.array.isRequired,
+  errors: PropTypes.array.isRequired,
+  touched: PropTypes.bool.isRequired,
+  isValid: PropTypes.bool.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+  setFieldTouched: PropTypes.func.isRequired,
 };
 
 export default NewForm;
