@@ -79,6 +79,7 @@ class View extends Component {
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   templatesList: PropTypes.array.isRequired,
+  listTemplates: PropTypes.array.isRequired,
   modulesList: PropTypes.array.isRequired,
   roomsList: PropTypes.array.isRequired,
   // functions
