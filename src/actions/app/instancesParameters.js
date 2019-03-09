@@ -2,57 +2,76 @@
 import { instancesParameters as t } from '../../constants';
 
 // Create
-export const instancesParamNewRequest = data => ({
-  type: t.INSTANCES_PARAM_NEW_REQUEST,
+export const instancesParametersNewRequest = data => ({
+  type: t.INSTANCES_PARAMETERS_NEW_REQUEST,
   payload: data
 });
-export const instancesParamNewSuccess = data => ({
-  type: t.INSTANCES_PARAM_NEW_SUCCESS,
+
+export const instancesParametersNewSuccess = data => ({
+  type: t.INSTANCES_PARAMETERS_NEW_SUCCESS,
   payload: data
 });
-export const instancesParamNewFailure = () => ({
-  type: t.INSTANCES_PARAM_NEW_FAILURE
+
+export const instancesParametersNewFailure = () => ({
+  type: t.INSTANCES_PARAMETERS_NEW_FAILURE
 });
 
 // Read
-export const instancesParamRequest = () => ({
-  type: t.INSTANCES_PARAM_REQUEST
+export const instancesParametersRequest = () => ({
+  type: t.INSTANCES_PARAMETERS_REQUEST
 });
-export const instancesParamSuccess = data => ({
-  type: t.INSTANCES_PARAM_SUCCESS,
+
+export const instancesParametersRequestByInstance = id => ({
+  type: t.INSTANCES_PARAMETERS_REQUEST_BY_INSTANCE,
+  payload: id
+});
+
+export const instancesParametersSuccess = data => ({
+  type: t.INSTANCES_PARAMETERS_SUCCESS,
   payload: data
 });
-export const instancesParamFailure = () => ({
-  type: t.INSTANCES_PARAM_FAILURE
+
+export const instancesParametersFailure = () => ({
+  type: t.INSTANCES_PARAMETERS_FAILURE
+});
+
+// Select Parameters
+export const instancesParametersSelect = id => ({
+  type: t.INSTANCES_PARAMETERS_SELECT,
+  payload: id
+});
+
+export const instancesParametersSelectReset = () => ({
+  type: t.INSTANCES_PARAMETERS_SELECT_RESET
 });
 
 // Update
-export const instancesParamUpdateRequest = data => ({
-  type: t.INSTANCES_PARAM_UPDATE_REQUEST,
+export const instancesParametersUpdateRequest = data => ({
+  type: t.INSTANCES_PARAMETERS_UPDATE_REQUEST,
   payload: data
 });
-export const instancesParamUpdateSuccess = data => ({
-  type: t.INSTANCES_PARAM_UPDATE_SUCCESS,
+export const instancesParametersUpdateSuccess = data => ({
+  type: t.INSTANCES_PARAMETERS_UPDATE_SUCCESS,
   payload: data
 });
-export const instancesParamUpdateFailure = () => ({
-  type: t.INSTANCES_PARAM_UPDATE_FAILURE
+export const instancesParametersUpdateFailure = () => ({
+  type: t.INSTANCES_PARAMETERS_UPDATE_FAILURE
 });
 
 // Delete
-export const instancesParamDelRequest = id => ({
-  type: t.INSTANCES_PARAM_DEL_REQUEST,
+export const instancesParametersDelRequest = id => ({
+  type: t.INSTANCES_PARAMETERS_DEL_REQUEST,
   payload: id
 });
-export const instancesParamDelSuccess = id => ({
-  type: t.INSTANCES_PARAM_DEL_SUCCESS,
+export const instancesParametersDelSuccess = id => ({
+  type: t.INSTANCES_PARAMETERS_DEL_SUCCESS,
   payload: id
 });
-export const instancesParamDelFailure = () => ({
-  type: t.INSTANCES_PARAM_DEL_FAILURE
+export const instancesParametersDelFailure = () => ({
+  type: t.INSTANCES_PARAMETERS_DEL_FAILURE
 });
 
 // Reset
-export const instancesParamReset = () => ({
-  type: t.INSTANCES_PARAM_RESET
+export const instancesParametersReset = () => ({
+  type: t.INSTANCES_PARAMETERS_RESET
 });
