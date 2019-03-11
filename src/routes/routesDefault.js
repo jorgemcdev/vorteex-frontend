@@ -41,7 +41,7 @@ const routes = [
     id: 12, path: '/instances/edit/:id', exact: true, name: 'Edit', component: InstancesEdit
   },
   {
-    id: 13, path: '/instances/parameters/:id', exact: true, name: 'Parameters', component: InstancesParameters
+    id: 13, path: '/instances/:id/parameters', exact: true, name: 'Parameters', component: InstancesParameters
   },
   // Templates
   {

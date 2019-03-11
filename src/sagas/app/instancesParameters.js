@@ -9,6 +9,7 @@ import {
   instancesParametersSuccess, instancesParametersFailure,
   instancesParametersNewFailure, instancesParametersNewSuccess,
   instancesParametersDelSuccess, instancesParametersDelFailure,
+  instancesParametersByInstanceSuccess, instancesParametersByInstanceFailure,
   // Messages
   addMessage
 } from '../../actions';
@@ -34,11 +35,10 @@ function* listInstanceItem(action) {
   try {
     // Api Call
     const result = yield call(api.request.get, e.INSTANCES_PARAMETERS, null, `instance=${action.payload}`);
-
     // Save Data to Store
-    yield put(instancesParametersSuccess(result.data));
+    yield put(instancesParametersByInstanceSuccess(result.data));
   } catch (error) {
-    yield put(instancesParametersFailure());
+    yield put(instancesParametersByInstanceFailure());
     yield put(addMessage('warning', 'Warn', `${error}`));
   }
 }
@@ -70,7 +70,7 @@ function* delItem(action) {
 // Watcher Sagas
 const instances = [
   takeEvery(t.INSTANCES_PARAMETERS_REQUEST, listItem),
-  takeEvery(t.INSTANCES_PARAMETERS_REQUEST_BY_INSTANCE, listInstanceItem),
+  takeEvery(t.INSTANCES_PARAMETERS_BY_INSTANCE_REQUEST, listInstanceItem),
   takeEvery(t.INSTANCES_PARAMETERS_NEW_REQUEST, newItem),
   takeEvery(t.INSTANCES_PARAMETERS_DEL_REQUEST, delItem)
 ];

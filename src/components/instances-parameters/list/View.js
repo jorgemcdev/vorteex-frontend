@@ -18,8 +18,8 @@ class View extends PureComponent {
   };
 
   componentDidMount() {
-    const { listItems } = this.props;
-    listItems();
+    const { listItems, instanceId } = this.props;
+    listItems(instanceId);
   }
 
   componentWillUnmount() {
@@ -120,6 +120,7 @@ View.defaultProps = {
 View.propTypes = {
   // Items
   items: PropTypes.array,
+  instanceId: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   listItems: PropTypes.func.isRequired,
   selectItem: PropTypes.func.isRequired,

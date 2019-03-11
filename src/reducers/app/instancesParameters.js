@@ -33,20 +33,36 @@ const instancesParameters = (state = initialState, action) => {
         items: []
       };
 
-    case t.INSTANCES_PARAMETERS_REQUEST_BY_INSTANCE:
-      return {
-        ...state,
-        isLoading: true,
-        items: []
-      };
-
     case t.INSTANCES_PARAMETERS_SUCCESS:
       return {
         ...state,
         isLoading: false,
         items: action.payload
       };
+
     case t.INSTANCES_PARAMETERS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        items: []
+      };
+
+    case t.INSTANCES_PARAMETERS_BY_INSTANCE_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        items: []
+      };
+    }
+
+    case t.INSTANCES_PARAMETERS_BY_INSTANCE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        items: action.payload
+      };
+
+    case t.INSTANCES_PARAMETERS_BY_INSTANCE_FAILURE:
       return {
         ...state,
         isLoading: false,

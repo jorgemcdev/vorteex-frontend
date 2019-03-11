@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import {
   // InstancesParameters
-  instancesParametersRequestByInstance, instancesParametersNewRequest, instancesParametersDelRequest,
+  instancesParametersByInstanceRequest, instancesParametersNewRequest, instancesParametersDelRequest,
   instancesParametersSelect,
   // Messages
   deleteMessage,
@@ -15,16 +15,17 @@ import {
 // Component
 import View from './View';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   isLoading: state.instancesParameters.isLoading,
   items: state.instancesParameters.items,
+  instanceId: ownProps.match.params.id,
   // Messages
   messages: state.message
 });
 
 const mapDispatchToProps = dispatch => ({
   // InstancesParameters
-  listItems: id => dispatch(instancesParametersRequestByInstance(id)),
+  listItems: id => dispatch(instancesParametersByInstanceRequest(id)),
   selectItem: id => dispatch(instancesParametersSelect(id)),
   newItem: data => dispatch(instancesParametersNewRequest(data)),
   deleteItem: id => dispatch(instancesParametersDelRequest(id)),

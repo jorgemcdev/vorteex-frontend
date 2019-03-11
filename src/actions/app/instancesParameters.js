@@ -1,6 +1,7 @@
 // Import Actions Types
 import { instancesParameters as t } from '../../constants';
 
+
 // Create
 export const instancesParametersNewRequest = data => ({
   type: t.INSTANCES_PARAMETERS_NEW_REQUEST,
@@ -21,11 +22,6 @@ export const instancesParametersRequest = () => ({
   type: t.INSTANCES_PARAMETERS_REQUEST
 });
 
-export const instancesParametersRequestByInstance = id => ({
-  type: t.INSTANCES_PARAMETERS_REQUEST_BY_INSTANCE,
-  payload: id
-});
-
 export const instancesParametersSuccess = data => ({
   type: t.INSTANCES_PARAMETERS_SUCCESS,
   payload: data
@@ -33,6 +29,20 @@ export const instancesParametersSuccess = data => ({
 
 export const instancesParametersFailure = () => ({
   type: t.INSTANCES_PARAMETERS_FAILURE
+});
+
+export const instancesParametersByInstanceRequest = id => ({
+  type: t.INSTANCES_PARAMETERS_BY_INSTANCE_REQUEST,
+  payload: id
+});
+
+export const instancesParametersByInstanceSuccess = data => ({
+  type: t.INSTANCES_PARAMETERS_BY_INSTANCE_SUCCESS,
+  payload: data
+});
+
+export const instancesParametersByInstanceFailure = () => ({
+  type: t.INSTANCES_PARAMETERS_BY_INSTANCE_FAILURE
 });
 
 // Select Parameters
