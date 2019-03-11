@@ -1,27 +1,34 @@
-/* eslint-disable camelcase */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import {
-  Card, CardBody, CardTitle, CardFooter, CardHeader,
-  Col, Row, Button
+  Card, CardBody, CardTitle, CardHeader, Col, Row
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-
+// Components
 import Alert from '../../shared/alert/Alert';
 import EditForm from './EditForm';
 
-class View extends PureComponent {
+class View extends Component {
+  async componentDidMount() {
+    const { item, listModules, listRooms } = this.props;
+    await listModules();
+    await listRooms();
+    if (item.length === 0) {
+      // TODO
+      console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+    }
+  }
+
+  // Handle Events
   handleCancel = () => {
     const { history } = this.props;
     history.push('/instances');
-  }
+  };
 
   render() {
     const {
       item, isLoading, editItem,
-      modulesList, roomsList, templatesList,
-      messages, delMessage
+      modulesList, roomsList, messages, delMessage,
     } = this.props;
 
     return (
@@ -49,23 +56,17 @@ class View extends PureComponent {
               ))}
 
               <EditForm
+                // item
                 item={item}
+                isLoading={isLoading}
                 editItem={editItem}
+                handleCancel={this.handleCancel}
+                // Related Data
                 modulesList={modulesList}
                 roomsList={roomsList}
-                templatesList={templatesList}
-                isLoading={isLoading}
               />
 
             </CardBody>
-
-            <CardFooter className="bg-white">
-              <Row>
-                <Col>
-                  <Button onClick={this.handleCancel}>Back to Instances</Button>
-                </Col>
-              </Row>
-            </CardFooter>
 
           </Card>
         </Col>
@@ -75,14 +76,19 @@ class View extends PureComponent {
 }
 
 View.propTypes = {
+  // Item
   item: PropTypes.object.isRequired,
-  editItem: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  templatesList: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
+  // Related Data
   modulesList: PropTypes.array.isRequired,
   roomsList: PropTypes.array.isRequired,
+  listModules: PropTypes.func.isRequired,
+  listRooms: PropTypes.func.isRequired,
+  // Messages
   messages: PropTypes.array.isRequired,
   delMessage: PropTypes.func.isRequired,
+  // History
   history: PropTypes.object.isRequired
 };
 
