@@ -1,7 +1,4 @@
 import * as Yup from 'yup';
-import api from '../../../api';
-
-const e = api.endpoints;
 
 const Schema = Yup.object().shape({
   module: Yup
@@ -9,28 +6,10 @@ const Schema = Yup.object().shape({
     .required('Required'),
   name: Yup
     .string()
-    .required('Required')
-    .test('name', 'Name is in Use', async (value) => {
-      let res;
-      try {
-        res = await api.request.get(e.INSTANCES, null, `name=${value}`);
-      } catch (error) {
-        return false;
-      }
-      return res.data.length === 0 && true;
-    }),
+    .required('Required'),
   codename: Yup
     .string()
-    .required('Required')
-    .test('codename', 'Codename is in Use', async (value) => {
-      let res;
-      try {
-        res = await api.request.get(e.INSTANCES, null, `codename=${value}`);
-      } catch (error) {
-        return false;
-      }
-      return res.data.length === 0 && true;
-    }),
+    .required('Required'),
   description: Yup
     .string()
     .required('Required'),
