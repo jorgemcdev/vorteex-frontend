@@ -7,6 +7,7 @@ import { instances as t } from '../../constants';
 import {
   instancesSuccess, instancesFailure,
   instancesNewFailure, instancesNewSuccess,
+  instancesUpdateSuccess, instancesUpdateFailure,
   instancesDelSuccess, instancesDelFailure,
   // templatesRequest,
   roomsRequest,
@@ -21,6 +22,7 @@ function* newItem(action) {
   try {
     const result = yield call(api.request.post, e.INSTANCES, action.payload);
     yield put(instancesNewSuccess(result.data));
+    yield put(addMessage('info', 'Info', 'New Instace Created'));
     history.push(`/instances/edit/${result.data.id}`);
   } catch (error) {
     yield put(instancesNewFailure());
@@ -42,12 +44,15 @@ function* listItem(action) {
 }
 
 function* editItem(action) {
+  const ID = action.payload.id;
+  const { id, ...data } = action.payload;
   try {
-    const result = yield call(api.request.patch, e.INSTANCES, action.payload.id, action.payload);
-    yield put(instancesNewSuccess(result.data));
+    const result = yield call(api.request.patch, e.INSTANCES, ID, data);
+    yield put(instancesUpdateSuccess(result.data));
+    yield put(addMessage('info', 'Info', 'Record Updated'));
     history.push(`/instances/edit/${result.data.id}`);
   } catch (error) {
-    yield put(instancesNewFailure());
+    yield put(instancesUpdateFailure());
     yield put(addMessage('warning', 'Warn', `${error}`));
   }
 }
