@@ -7,6 +7,8 @@ const Instances = React.lazy(() => import('../components/instances/list'));
 const InstancesNew = React.lazy(() => import('../components/instances/new'));
 const InstancesEdit = React.lazy(() => import('../components/instances/edit'));
 
+const InstancesParameters = React.lazy(() => import('../components/instances-parameters/list'));
+
 // Templates
 const Templates = React.lazy(() => import('../components/templates'));
 
@@ -37,6 +39,9 @@ const routes = [
   },
   {
     id: 12, path: '/instances/edit/:id', exact: true, name: 'Edit', component: InstancesEdit
+  },
+  {
+    id: 13, path: '/instances/:id/parameters', exact: true, name: 'Parameters', component: InstancesParameters
   },
   // Templates
   {

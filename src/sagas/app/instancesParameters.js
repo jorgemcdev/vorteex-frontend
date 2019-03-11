@@ -6,9 +6,10 @@ import { instancesParameters as t } from '../../constants';
 // Import Action Creators
 import {
   // Instances
-  instancesParamSuccess, instancesParamFailure,
-  instancesParamNewFailure, instancesParamNewSuccess,
-  instancesParamDelSuccess, instancesParamDelFailure,
+  instancesParametersSuccess, instancesParametersFailure,
+  instancesParametersNewFailure, instancesParametersNewSuccess,
+  instancesParametersDelSuccess, instancesParametersDelFailure,
+  instancesParametersByInstanceSuccess, instancesParametersByInstanceFailure,
   // Messages
   addMessage
 } from '../../actions';
@@ -23,9 +24,21 @@ function* listItem(action) {
     // Api Call
     const result = yield call(api.request.get, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
-    yield put(instancesParamSuccess(result.data));
+    yield put(instancesParametersSuccess(result.data));
   } catch (error) {
-    yield put(instancesParamFailure());
+    yield put(instancesParametersFailure());
+    yield put(addMessage('warning', 'Warn', `${error}`));
+  }
+}
+
+function* listInstanceItem(action) {
+  try {
+    // Api Call
+    const result = yield call(api.request.get, e.INSTANCES_PARAMETERS, null, `instance=${action.payload}`);
+    // Save Data to Store
+    yield put(instancesParametersByInstanceSuccess(result.data));
+  } catch (error) {
+    yield put(instancesParametersByInstanceFailure());
     yield put(addMessage('warning', 'Warn', `${error}`));
   }
 }
@@ -35,9 +48,9 @@ function* newItem(action) {
     // Api Call
     const result = yield call(api.request.post, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
-    yield put(instancesParamNewSuccess(result.data));
+    yield put(instancesParametersNewSuccess(result.data));
   } catch (error) {
-    yield put(instancesParamNewFailure());
+    yield put(instancesParametersNewFailure());
     yield put(addMessage('warning', 'Warn', `${error}`));
   }
 }
@@ -47,18 +60,19 @@ function* delItem(action) {
     // Api Call
     yield call(api.request.del, e.INSTANCES_PARAMETERS, action.payload);
     // Save Data to Store
-    yield put(instancesParamDelSuccess(action.payload));
+    yield put(instancesParametersDelSuccess(action.payload));
   } catch (error) {
-    yield put(instancesParamDelFailure());
+    yield put(instancesParametersDelFailure());
     yield put(addMessage('warning', 'Warn', `${error}`));
   }
 }
 
 // Watcher Sagas
 const instances = [
-  takeEvery(t.INSTANCES_PARAM_REQUEST, listItem),
-  takeEvery(t.INSTANCES_PARAM_NEW_REQUEST, newItem),
-  takeEvery(t.INSTANCES_PARAM_DEL_REQUEST, delItem)
+  takeEvery(t.INSTANCES_PARAMETERS_REQUEST, listItem),
+  takeEvery(t.INSTANCES_PARAMETERS_BY_INSTANCE_REQUEST, listInstanceItem),
+  takeEvery(t.INSTANCES_PARAMETERS_NEW_REQUEST, newItem),
+  takeEvery(t.INSTANCES_PARAMETERS_DEL_REQUEST, delItem)
 ];
 
 export default instances;
