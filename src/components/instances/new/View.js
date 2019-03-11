@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import {
-  Card, CardBody, CardTitle, CardFooter, CardHeader, Col, Row, Button
+  Card, CardBody, CardTitle, CardHeader, Col, Row
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
@@ -57,17 +57,10 @@ class View extends Component {
                 modulesList={modulesList}
                 roomsList={roomsList}
                 isLoading={isLoading}
+                handleCancel={this.handleCancel}
               />
 
             </CardBody>
-
-            <CardFooter className="bg-white">
-              <Row>
-                <Col>
-                  <Button outline onClick={this.handleCancel}>Back to Instances</Button>
-                </Col>
-              </Row>
-            </CardFooter>
 
           </Card>
         </Col>
@@ -77,12 +70,12 @@ class View extends Component {
 }
 
 View.propTypes = {
+  // Data
   isLoading: PropTypes.bool.isRequired,
   templatesList: PropTypes.array.isRequired,
-  listTemplates: PropTypes.array.isRequired,
   modulesList: PropTypes.array.isRequired,
   roomsList: PropTypes.array.isRequired,
-  // functions
+  // Data Functions
   newItem: PropTypes.func.isRequired,
   listTemplates: PropTypes.func.isRequired,
   listModules: PropTypes.func.isRequired,

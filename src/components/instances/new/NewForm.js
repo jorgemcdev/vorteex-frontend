@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import {
-  Button, Col, Form, FormGroup, Input, Label
+  Button, ButtonGroup, Col, Form, FormGroup, Input, Label, FormText
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import validationSchema from './instancesSchema';
 
 const NewForm = ({
-  newItem, isLoading, roomsList, modulesList, templatesList
+  newItem, isLoading, roomsList, modulesList, templatesList, handleCancel
 }) => {
   const handleNewItem = (values) => {
     const data = {
@@ -20,7 +20,7 @@ const NewForm = ({
       codename: values.codename,
       description: values.description,
       source_rooms: values.source_rooms ? values.source_rooms : [],
-      destination_rooms: values.destination_rooms && Number(values.destination_rooms),
+      destination_rooms: values.destination_rooms ? Number(values.destination_rooms) : '',
     };
     newItem(data);
   };
@@ -41,13 +41,12 @@ const NewForm = ({
         validationSchema={validationSchema}
         initialValues={initialValues}
       >
-        {(props) => {
+        {(formikProps) => {
           const {
-            values, touched, errors, isValid,
-            handleBlur, handleChange, handleSubmit,
+            values, touched, errors, isValid, isSubmitting, dirty,
+            handleBlur, handleChange, handleSubmit, handleReset,
             setFieldValue, setFieldTouched
-            // handleReset, // isSubmitting, // dirty,
-          } = props;
+          } = formikProps;
 
           return (
             <Form onSubmit={handleSubmit}>
@@ -80,9 +79,10 @@ const NewForm = ({
                     labelKey="name"
                     options={templatesList.map(el => ({ value: el.id, name: el.name, data: el }))}
                   />
-                  <div className="text-danger">
-                    {(errors.template && touched.template) && errors.template}
-                  </div>
+                  <FormText color="muted">
+                    Select Template to autofill: MODULE, NAME and DESCRIPTION
+                  </FormText>
+                  <br />
                 </Col>
               </FormGroup>
 
@@ -160,7 +160,7 @@ const NewForm = ({
                     clearButton
                     selectHintOnEnter
                     onChange={(selected) => {
-                      const value = (selected.length > 0) ? selected.map(el => el.value) : [];
+                      const value = (selected.length > 0) ? selected.map(el => el.id) : [];
                       setFieldValue('source_rooms', value);
                     }}
                     onBlur={() => setFieldTouched('source_rooms', true)}
@@ -190,10 +190,20 @@ const NewForm = ({
                 </Col>
               </FormGroup>
 
-              <Button color="primary" className="px-4 float-right" type="submit" disabled={!isValid || isLoading}>
-                {isLoading && <i className="fa fa-circle-o-notch fa-spin mr-1" />}
-                Submit
-              </Button>
+              <FormGroup className="pt-4">
+                <Button onClick={handleCancel}><i className="fa fa-chevron-left" /></Button>
+
+                <ButtonGroup className="float-right">
+                  <Button color="primary" type="submit" disabled={!isValid || isLoading}>
+                    {isLoading && <i className="fa fa-circle-o-notch fa-spin mr-1" />}
+                    Submit
+                  </Button>
+                  <Button color="secondary" type="reset" value="Reset" onClick={handleReset} disabled={!dirty || isSubmitting}>
+                    Reset
+                  </Button>
+                </ButtonGroup>
+              </FormGroup>
+
 
             </Form>
           );
@@ -205,20 +215,11 @@ const NewForm = ({
 
 NewForm.propTypes = {
   newItem: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   roomsList: PropTypes.array.isRequired,
   modulesList: PropTypes.array.isRequired,
-  templatesList: PropTypes.array.isRequired,
-  // Formik
-  values: PropTypes.array.isRequired,
-  errors: PropTypes.array.isRequired,
-  touched: PropTypes.bool.isRequired,
-  isValid: PropTypes.bool.isRequired,
-  handleBlur: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  setFieldValue: PropTypes.func.isRequired,
-  setFieldTouched: PropTypes.func.isRequired,
+  templatesList: PropTypes.array.isRequired
 };
 
 export default NewForm;
