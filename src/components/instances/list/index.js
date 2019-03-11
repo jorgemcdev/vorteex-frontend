@@ -4,12 +4,12 @@ import {
   // Instances
   instancesRequest, instancesNewRequest, instancesDelRequest,
   instancesSelect,
+  // Related Data
+  templatesRequest, modulesRequest, roomsRequest,
   // Messages
   deleteMessage,
   // Modal
-  modalOpen,
-  instancesReset,
-
+  modalOpen
 } from '../../../actions/index';
 
 // Component
@@ -28,12 +28,14 @@ const mapDispatchToProps = dispatch => ({
   selectItem: id => dispatch(instancesSelect(id)),
   newItem: data => dispatch(instancesNewRequest(data)),
   deleteItem: id => dispatch(instancesDelRequest(id)),
-  resetItems: () => dispatch(instancesReset()),
+  // Related Data
+  listTemplates: () => dispatch(templatesRequest()),
+  listModules: () => dispatch(modulesRequest()),
+  listRooms: () => dispatch(roomsRequest()),
   // Messages
   delMessage: id => dispatch(deleteMessage(id)),
   // Modal
   modalOpen: data => dispatch(modalOpen(data))
-
 });
 
 export default connect(

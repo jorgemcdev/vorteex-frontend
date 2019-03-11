@@ -18,13 +18,13 @@ class View extends PureComponent {
   };
 
   componentDidMount() {
-    const { listItems } = this.props;
+    const {
+      listItems, listModules, listRooms, listTemplates
+    } = this.props;
     listItems();
-  }
-
-  componentWillUnmount() {
-    // const { resetItems } = this.props;
-    // resetItems();
+    listModules();
+    listRooms();
+    listTemplates();
   }
 
   handleNewRecord = () => {
@@ -118,13 +118,16 @@ View.defaultProps = {
 };
 
 View.propTypes = {
-  // Items
+  // Iten
   items: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
   listItems: PropTypes.func.isRequired,
   selectItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
-  resetItems: PropTypes.func.isRequired,
+  // Related Data
+  listTemplates: PropTypes.func.isRequired,
+  listModules: PropTypes.func.isRequired,
+  listRooms: PropTypes.func.isRequired,
   // Messages
   messages: PropTypes.array.isRequired,
   delMessage: PropTypes.func.isRequired,

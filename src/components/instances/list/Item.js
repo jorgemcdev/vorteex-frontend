@@ -11,13 +11,12 @@ const Item = ({ item, handleDelete, handleEdit }) => {
     name,
     codename,
     description,
-    group,
     module,
     source_rooms,
     destination_rooms
   } = item;
 
-  const sourceRooms = source_rooms && source_rooms.map(el => <Badge className="mr-1 text-white" color="warning" key={el.id}>{el.name}</Badge>);
+  const sourceRooms = source_rooms && source_rooms.length && source_rooms.map(el => el && <Badge className="mr-1 text-white" color="warning" key={el.id}>{el.name}</Badge>);
   const destinationRooms = destination_rooms && <Badge color="success">{destination_rooms.name}</Badge>;
   const moduleName = module.name ? module.name : '';
 
