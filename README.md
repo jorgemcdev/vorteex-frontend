@@ -1,5 +1,26 @@
 # Vorteex frontend
 
+This repo is a from my mentoring work to build a OpenSouce frontend solution for IT security teams for collecting and processing security feeds using a message queuing protocol.
+
+
+<img width="150" src="./screenshots/dashboard.png">
+
+<img width="150" src="./screenshots/dashboard2.png">
+
+<img width="150" src="./screenshots/instances.png">
+
+<img width="150" src="./screenshots/instances_list.png">
+
+<img width="150" src="./screenshots/instances.png">
+
+<img width="150" src="./screenshots/instances2.png">
+
+<img width="150" src="./screenshots/rooms.png">
+
+<img width="150" src="./screenshots/templates.png">
+
+
+
 ## Install
 
 ```sh
