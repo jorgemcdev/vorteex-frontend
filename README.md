@@ -6,24 +6,24 @@ This repo is a from my React Redux mentoring work to build a OpenSouce frontend 
 
 <table cellpadding="1" cellspacing="1">
 <tr>
-  <td><img width="250" src="./screenshots/dashboard.png"></td>
-  <td><img width="250" src="./screenshots/dashboard2.png"></td>
+  <td><img width="350" src="./screenshots/dashboard.png"></td>
+  <td><img width="350" src="./screenshots/dashboard2.png"></td>
 </tr>
 
 <tr>
-  <td><img width="250" src="./screenshots/instances.png"></td>
-  <td><img width="250" src="./screenshots/instances_list.png"></td>
+  <td><img width="350" src="./screenshots/instances.png"></td>
+  <td><img width="350" src="./screenshots/instances_list.png"></td>
 </tr>
 
 <tr>
-  <td><img width="250" src="./screenshots/instances.png"></td>
-  <td><img width="250" src="./screenshots/instances2.png">
+  <td><img width="350" src="./screenshots/instances.png"></td>
+  <td><img width="350" src="./screenshots/instances2.png">
   </td>
 </tr>
 
 <tr>
-  <td><img width="250" src="./screenshots/rooms.png"></td>
-  <td><img width="250" src="./screenshots/templates.png"> </td>
+  <td><img width="350" src="./screenshots/rooms.png"></td>
+  <td><img width="350" src="./screenshots/templates.png"> </td>
 </tr>
 </table>
 
