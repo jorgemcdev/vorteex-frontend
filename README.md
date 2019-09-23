@@ -1,6 +1,6 @@
 # Vorteex frontend
 
-This repo is a from my React Redux mentoring work to build a OpenSouce frontend solution for IT security teams for collecting and processing security feeds using a message queuing protocol.
+This repo is a React Redux project to build a OpenSouce Frontend solution for IT security teams for collecting and processing security feeds.
 
 :) NO BACKEND AVAILABLE
 
