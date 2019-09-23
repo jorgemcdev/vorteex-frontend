@@ -1,23 +1,31 @@
 # Vorteex frontend
 
-This repo is a from my mentoring work to build a OpenSouce frontend solution for IT security teams for collecting and processing security feeds using a message queuing protocol.
+This repo is a from my React Redux mentoring work to build a OpenSouce frontend solution for IT security teams for collecting and processing security feeds using a message queuing protocol.
 
+:) NO BACKEND AVAILABLE
 
-<img width="150" src="./screenshots/dashboard.png">
+<table cellpadding="1" cellspacing="1">
+<tr>
+  <td><img width="250" src="./screenshots/dashboard.png"></td>
+  <td><img width="250" src="./screenshots/dashboard2.png"></td>
+</tr>
 
-<img width="150" src="./screenshots/dashboard2.png">
+<tr>
+  <td><img width="250" src="./screenshots/instances.png"></td>
+  <td><img width="250" src="./screenshots/instances_list.png"></td>
+</tr>
 
-<img width="150" src="./screenshots/instances.png">
+<tr>
+  <td><img width="250" src="./screenshots/instances.png"></td>
+  <td><img width="250" src="./screenshots/instances2.png">
+  </td>
+</tr>
 
-<img width="150" src="./screenshots/instances_list.png">
-
-<img width="150" src="./screenshots/instances.png">
-
-<img width="150" src="./screenshots/instances2.png">
-
-<img width="150" src="./screenshots/rooms.png">
-
-<img width="150" src="./screenshots/templates.png">
+<tr>
+  <td><img width="250" src="./screenshots/rooms.png"></td>
+  <td><img width="250" src="./screenshots/templates.png"> </td>
+</tr>
+</table>
 
 
 
