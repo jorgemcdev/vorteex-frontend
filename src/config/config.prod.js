@@ -9,7 +9,7 @@ export const API_TIMEOUT = 20000;
 export const API_DELAY = 0;
 
 // Pagination
-export const ITEMS_PER_PAGE = 5;
+export const ITEMS_PER_PAGE = 20;
 export const VISIBLE_PAGES = 10;
 
 // Toast

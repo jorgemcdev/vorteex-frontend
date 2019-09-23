@@ -1,26 +1,19 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 
-// Libs
-import asyncComponent from '../lib/asyncComponent';
+const Login = React.lazy(() => import('../components/auth/login'));
+const Page404 = React.lazy(() => import('../components/shared/pages/Page404'));
+const Page500 = React.lazy(() => import('../components/shared/pages/Page500'));
 
-// Layout
-import Layout from '../components/layouts/Page';
+const routes = [
+  {
+    id: 1, path: '/', exact: true, name: 'Login', component: Login,
+  },
+  {
+    id: 8, path: '/500', exact: true, name: '500', component: Page500,
+  },
+  {
+    id: 9, path: '/*', exact: true, name: '404', component: Page404,
+  }
+];
 
-// Components
-const LoginPage = asyncComponent(() => import('../components/auth/Login'));
-const NotFound = asyncComponent(() => import('../components/shared/404/NotFound'));
-
-// Routes
-const routesPublic = (
-  <React.Fragment>
-    <Layout>
-      <Switch>
-        <Route exact path="/" component={LoginPage} />
-        <Route path="*" component={NotFound} />
-      </Switch>
-    </Layout>
-  </React.Fragment>
-);
-
-export default routesPublic;
+export default routes;

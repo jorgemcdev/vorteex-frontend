@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 
 // import load/save localstorage
-import { loadState, saveState } from '../lib/persistState';
+import { loadState, saveState } from '../utils/persistState';
 
 // import Reducers
 import reducers from '../reducers';

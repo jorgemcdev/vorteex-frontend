@@ -1,9 +1,9 @@
-/* Core */
-import auth from './core/auth';
+import request from './request';
+import * as endpoints from './endpoints';
 
 const api = {
-  // Core
-  auth
+  request,
+  endpoints
 };
 
 export default api;

@@ -4,9 +4,9 @@
   "description": "Vorteex - Manager Frontend",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --hot --open --config webpack.config.dev",
-    "build": "webpack --mode production --config webpack.config.prod",
-    "start": "webpack-dev-server --config webpack.config ./build/index.html",
+    "dev": "webpack-dev-server --config .webpack/dev.config.js",
+    "build": "webpack                  --config .webpack/prod.config.js",
+    "start": "webpack-dev-server       --config .webpack/base.config.js",
     "deploy": "npm run build && node s3-deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -53,12 +53,22 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@coreui/coreui": "^2.1.6",
+    "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.2.0",
+    "@coreui/icons": "^0.3.0",
+    "@coreui/react": "^2.1.3",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "classnames": "^2.2.6",
+    "flag-icon-css": "^3.2.1",
+    "font-awesome": "^4.7.0",
+    "formik": "^1.4.3",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "react": "^16.7.0",
+    "react-bootstrap-typeahead": "^4.0.0-alpha.2",
     "react-dom": "^16.7.0",
+    "react-js-pagination": "^3.0.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
@@ -67,6 +77,8 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.0",
     "shortid": "^2.2.14",
-    "vis-react": "^0.4.3"
+    "simple-line-icons": "^2.4.1",
+    "vis-react": "^0.4.3",
+    "yup": "^0.26.10"
   }
 }

@@ -9,35 +9,33 @@ const initialState = {
     text: '',
     items: [],
     actionLabel: '',
-    action: null
-  },
-  className: ''
+    action: null,
+    className: ''
+  }
 };
 
 const modal = (state = initialState, action) => {
   switch (action.type) {
-    // LOGIN
     case t.MODAL_OPEN:
       return {
         ...state,
         isOpen: true,
         data: {
-          type: action.payload.data.type,
-          title: action.payload.data.title,
-          id: action.payload.data.id,
-          text: action.payload.data.text,
-          items: action.payload.data.items,
-          actionLabel: action.payload.data.actionLabel,
-          action: action.payload.data.action,
-        },
-        className: action.payload.className
+          type: action.payload.type,
+          title: action.payload.title,
+          id: action.payload.id,
+          text: action.payload.text,
+          items: action.payload.items,
+          actionLabel: action.payload.actionLabel,
+          action: action.payload.action,
+          className: action.payload.className
+        }
       };
-
-    // Reset
     case t.MODAL_CLOSE:
       return {
         ...state,
         isOpen: false,
+        data: initialState
       };
     default:
       return state;
